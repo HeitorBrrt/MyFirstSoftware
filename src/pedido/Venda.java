@@ -38,16 +38,13 @@ public class Venda {
 	}
 	public void setIdVenda(String idVenda)  {
 		this.idVenda = idVenda;
-
 	}
-
 	public void setPrecoTotal(String precoTotal)  {
 		this.precoTotal = precoTotal;
 	}
 
 	public void setDataVenda(String dataVenda) {
 		this.dataVenda = dataVenda;
-
 	}
 
 	public void setIdCliente(String idCliente){
@@ -65,13 +62,10 @@ public class Venda {
 	public void setIdProduto( String idProduto){
 		this.idProduto=idProduto;
 	}
-
-	////////////////////////////////////////////////////////////////
 	public String getIdVenda(){ return idVenda;}
 	public String getPrecoTotal(){ return precoTotal;}
 	public String getDataVenda(){ return dataVenda;}
 	public int getIdCliente(){ return idCliente;}
 	public String getIdUsuario(){ return idUsuario;}
-///////////////////////////////////////////////////////////////////
 
 }
