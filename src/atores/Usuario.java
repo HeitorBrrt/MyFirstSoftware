@@ -1,7 +1,6 @@
 package atores;
 
-public class Usuario extends Pessoa
-{
+public class Usuario extends Pessoa {
 	private String user;
 	private String senha;
 	private int qtdVendas;
