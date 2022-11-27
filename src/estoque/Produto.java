@@ -1,7 +1,6 @@
 package estoque;
 
-public class Produto 
-{
+public class Produto {
 	private String idProduto;
 	private String produtoNome;
 	private String telefoneImportadora;
@@ -23,9 +22,7 @@ public class Produto
 		setDatacadastro(datacadastro);
 	}
 
-    public Produto() {
-
-    }
+    public Produto() {}
 
 	public void setIdProduto(String idProduto){
 		this.idProduto=idProduto;
@@ -61,11 +58,9 @@ public class Produto
 	public String getDatacadastro(){
 		return datacadastro;
 	}
-
 	public int getQuantidade() {
 		return quantidade;
 	}
-
 	public void setQuantidade(int quantidade) {
 		this.quantidade = quantidade;
 	}

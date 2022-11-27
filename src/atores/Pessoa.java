@@ -1,7 +1,6 @@
 package atores;
 
-public class Pessoa 
-{
+public class Pessoa {
 	private String nome;
 	private String telefone;
 	private String endereco;

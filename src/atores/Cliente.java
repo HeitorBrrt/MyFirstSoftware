@@ -3,9 +3,8 @@ package atores;
 public class Cliente extends Pessoa {
 	private String idCliente;
 	private String userUsuario;
-	public Cliente() {
+	public Cliente() {}
 
-	}
 	public Cliente(String idCliente,String nome, String telefone, String endereco, String dataCadastro, String userUsuario) {
 		super(nome,telefone,endereco,dataCadastro);
 		setIdCliente(idCliente);

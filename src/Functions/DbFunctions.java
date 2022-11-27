@@ -24,7 +24,7 @@ public class DbFunctions {
         return conn;
     }
 
-    public void drop_table(Connection conn, String table_name){
+    /*public void drop_table(Connection conn, String table_name){
         Statement statement;
         try {
             String query = String.format("DROP TABLE  %s cascade", table_name);
@@ -34,7 +34,7 @@ public class DbFunctions {
         }catch (Exception e){
             JOptionPane.showMessageDialog(null, e);
         }
-    }
+    }*/
 
     public void createTables(Connection conn){
         Statement statement;
@@ -134,7 +134,7 @@ public class DbFunctions {
         }
     }
 
-    public void delete_row(Connection conn, String table_name, String where, String deletar){
+    /*public void delete_row(Connection conn, String table_name, String where, String deletar){
         Statement statement;
         try{
             String query = String.format("delete from %s where %s='%s';", table_name, where, deletar);
@@ -145,7 +145,7 @@ public class DbFunctions {
         }catch (Exception e){
             JOptionPane.showMessageDialog(null, e);
         }
-    }
+    }*/
 
     // Get Information
     public String getNome_info(Connection conn, String table_name, String id, String usuario){
@@ -199,6 +199,8 @@ public class DbFunctions {
         return null;
     }                     // Ambos
 
+    /*
+
     public String getIdCliente_info(Connection conn,  String idCliente){
         Statement statement;
         ResultSet rs;
@@ -214,7 +216,8 @@ public class DbFunctions {
             JOptionPane.showMessageDialog(null, e);
         }
         return null;
-    }                                               // CLIENTES
+    }*/// CLIENTES
+
     public String getIdUser_info(Connection conn, String idCliente){
         Statement statement;
         ResultSet rs;
@@ -296,7 +299,7 @@ public class DbFunctions {
         return null;
     }                 // Ambos
 
-    public String getProductID_info(Connection conn, Integer idproduto){
+    /*public String getProductID_info(Connection conn, Integer idproduto){
         Statement statement;
         ResultSet rs;
         try {
@@ -311,7 +314,8 @@ public class DbFunctions {
             JOptionPane.showMessageDialog(null, e);
         }
         return null;
-    }                                               // Produtos
+    }*/ // Produtos
+
     public String getPrecoCompra_info(Connection conn, Integer idproduto){
         Statement statement;
         ResultSet rs;
@@ -345,13 +349,13 @@ public class DbFunctions {
         return null;
     }                                              // Produtos
 
-    public void precTotal(Integer idproduto, String quantidade) {
+    /*public void precTotal(Integer idproduto, String quantidade) {
         DbFunctions db = new DbFunctions();
         Connection conn = db.connect_to_db("InfoTech", "postgres", "lbj23kb24mj45");
         String precoVend = String.valueOf(db.getPrecoVenda_info(conn, idproduto));
         Double precTot = Double.parseDouble(precoVend)*Double.parseDouble(quantidade);
         JOptionPane.showMessageDialog(null, precTot);
-    }
+    }*/
 
     public String getQtdVendas_info(Connection conn, String usuario){
         Statement statement;
@@ -445,6 +449,7 @@ public class DbFunctions {
             JOptionPane.showMessageDialog(null, e);
         }
     }
+
     // Update Cliente
     public void update_client(Connection conn, String table_name, String idCliente, String novoNome,
                               String novoTelefone, String novoEndereco, String novoUserUsuario, String novoDataCadastro) {
@@ -657,7 +662,6 @@ public class DbFunctions {
         }
     }
 
-
     // Ler dados Vendas
     public List<Venda> read_dataVendas(Connection conn){
         PreparedStatement statement3;
@@ -680,8 +684,6 @@ public class DbFunctions {
         }
         return vendasList;
     }
-
-
 
     public static void main(String[] args) {
         DbFunctions db = new DbFunctions();
