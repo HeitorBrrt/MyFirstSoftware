@@ -27,8 +27,7 @@ public class Usuario extends Pessoa
 	{
 		this.user = user;
 	}
-	public void setSenha(String senha)
-	{
+	public void setSenha(String senha) {
 		this.senha = senha;
 	}
 	public void setQtdVendas(int qtdVendas)
