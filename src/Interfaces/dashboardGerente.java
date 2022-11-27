@@ -17,7 +17,7 @@ import java.util.GregorianCalendar;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
- * @Author Heitor
+ * {@code @Author} Heitor
  */
 
 public class dashboardGerente {
