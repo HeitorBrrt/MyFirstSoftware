@@ -1,13 +1,12 @@
 package Interfaces;
 
-import java.awt.event.*;
-import javax.swing.border.*;
-import javax.swing.table.*;
-import Functions.DbFunctions;
-import atores.Cliente;
-import atores.Usuario;
-import estoque.Produto;
-import pedido.Venda;
+
+import javax.swing.border.BevelBorder;
+import javax.swing.border.TitledBorder;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
+import javax.swing.table.TableColumnModel;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -15,6 +14,14 @@ import java.awt.event.MouseEvent;
 import java.sql.Connection;
 import java.util.GregorianCalendar;
 import java.util.concurrent.ThreadLocalRandom;
+
+import Functions.DbFunctions;
+import atores.Cliente;
+import atores.Usuario;
+import estoque.Produto;
+import pedido.Venda;
+
+
 
 /**
  * {@code @Author} Heitor
@@ -219,7 +226,6 @@ public class dashboardGerente {
             case 10 -> strMes = "Novembro";
             case 11 -> strMes = "Dezembro";
         }
-        int hora;
         return calendar.get(GregorianCalendar.DAY_OF_MONTH)+" de "+strMes+" de "+calendar.get(GregorianCalendar.YEAR);
     }
 
@@ -304,9 +310,9 @@ public class dashboardGerente {
         String userUsuario = cadClienteUserField.getText();
         GregorianCalendar calendar = new GregorianCalendar();
         String dataCadastro =
-                String.valueOf(calendar.get(GregorianCalendar.DAY_OF_MONTH)) + "/" +
-                        String.valueOf(calendar.get(GregorianCalendar.MONTH) + 1) + "/" +
-                        String.valueOf(calendar.get(GregorianCalendar.YEAR));
+                calendar.get(GregorianCalendar.DAY_OF_MONTH) + "/" +
+                calendar.get(GregorianCalendar.MONTH) + 1 + "/" +
+                calendar.get(GregorianCalendar.YEAR);
 
         if ((cadClienteNomeField.getText().length() > 0) && (cadClienteTelefoneField.getText().length() > 0) &&
                 (cadClienteEnderecoField.getText().length() > 0) && (cadClienteUserField.getText().length() > 0)) {
@@ -392,7 +398,7 @@ public class dashboardGerente {
         DbFunctions db = new DbFunctions();
         Connection conn = db.connect_to_db("InfoTech", "postgres", "lbj23kb24mj45");
         if((edifuncNomeField.getText().length()>0) && (edifuncTelField.getText().length()>0) && (edifuncEndField.getText().length()>0) &&
-        (edifuncUserField.getText().length()>0) && (edifuncSenField.getText().length()>0) && (edifuncQtdField.getText().length()>0) &&
+        (edifuncUserField.getText().length()>0) && (String.valueOf(edifuncSenField.getPassword()).length()>0) && (edifuncQtdField.getText().length()>0) &&
         (edifuncTipoField.getText().length()>0) && edifuncDataField.getText().length()>0) {
             try {
                 db.update_user(conn, "usuario",
@@ -401,7 +407,7 @@ public class dashboardGerente {
                         edifuncTelField.getText(),
                         edifuncEndField.getText(),
                         edifuncUserField.getText(),
-                        edifuncSenField.getText(),
+                        String.valueOf(edifuncSenField.getPassword()),
                         edifuncQtdField.getText(),
                         edifuncTipoField.getText(),
                         edifuncDataField.getText());
@@ -443,12 +449,12 @@ public class dashboardGerente {
         String senha = String.valueOf(cadFuncSenField.getPassword());
 
         GregorianCalendar calendar = new GregorianCalendar();
-        String dataCadastro = String.valueOf(calendar.get(GregorianCalendar.DAY_OF_MONTH)) + "/" +
-                String.valueOf(calendar.get(GregorianCalendar.MONTH)) + "/" +
-                String.valueOf(calendar.get(GregorianCalendar.YEAR));
+        String dataCadastro = calendar.get(GregorianCalendar.DAY_OF_MONTH) + "/" +
+                calendar.get(GregorianCalendar.MONTH) + "/" +
+                calendar.get(GregorianCalendar.YEAR);
 
         if ((cadFuncNomeField.getText().length() > 0) && (cadFuncTelField.getText().length() > 0) &&
-                (cadFuncEndField.getText().length() > 0) && (cadFuncUserField.getText().length() > 0) && (cadFuncSenField.getText().length() > 0)) {
+                (cadFuncEndField.getText().length() > 0) && (cadFuncUserField.getText().length() > 0) && (String.valueOf(cadFuncSenField.getPassword()).length() > 0)) {
             try {
                 Usuario usuario = new Usuario(userUsuario, nome, telefone, endereco, dataCadastro, senha, 0, "Funcion\u00E1rio");
                 db.insert_row_funcionario(conn, "usuario", usuario.getUser(), usuario.getNome(), usuario.getTelefone(), usuario.getEndereco(), usuario.getSenha(), usuario.getUsuarioTipo(), usuario.getDataCadastro());
@@ -491,13 +497,13 @@ public class dashboardGerente {
         String nome = cadProdNomeField.getText();
         String telefoneImportadora = cadProdTelefoneField.getText();
         String enderecoImportadora = cadProdEndField.getText();
-        Integer quantidade = Integer.valueOf(cadQuantidadeField.getText());
+        int quantidade = Integer.parseInt(cadQuantidadeField.getText());
         String precoCompra = cadProdPrecoCompra.getText();
         String precoVenda = cadProdPrecoVenda.getText();
         GregorianCalendar calendar = new GregorianCalendar();
-        String dataCadastro = String.valueOf(calendar.get(GregorianCalendar.DAY_OF_MONTH)) + "/" +
-                String.valueOf(calendar.get(GregorianCalendar.MONTH)+1) + "/" +
-                String.valueOf(calendar.get(GregorianCalendar.YEAR));
+        String dataCadastro = calendar.get(GregorianCalendar.DAY_OF_MONTH) + "/" +
+                calendar.get(GregorianCalendar.MONTH)+1 + "/" +
+                calendar.get(GregorianCalendar.YEAR);
 
         if((cadProdNomeField.getText().length()>0) && (cadProdTelefoneField.getText().length()>0) &&
             (cadProdEndField.getText().length()>0) && (cadProdPrecoCompra.getText().length()>0)   &&
@@ -578,9 +584,9 @@ public class dashboardGerente {
         String idProduto = venIdProdutoField.getText();
 
         GregorianCalendar calendar = new GregorianCalendar();
-        String datavenda = String.valueOf(calendar.get(GregorianCalendar.DAY_OF_MONTH)) + "/" +
-                String.valueOf(calendar.get(GregorianCalendar.MONTH)+1) + "/" +
-                String.valueOf(calendar.get(GregorianCalendar.YEAR));
+        String datavenda = calendar.get(GregorianCalendar.DAY_OF_MONTH) + "/" +
+                calendar.get(GregorianCalendar.MONTH)+1 + "/" +
+                calendar.get(GregorianCalendar.YEAR);
 
         if((venIdProdutoField.getText().length()>0) && (fichaTextPane.getText().length()>0) &&
                 (venQtdField.getText().length()>0) && (venIdUserField.getText().length()>0) &&
