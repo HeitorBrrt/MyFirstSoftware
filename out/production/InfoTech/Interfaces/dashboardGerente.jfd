@@ -316,6 +316,7 @@ new FormModel {
 							name: "fichaTextPane"
 							"border": new javax.swing.border.TitledBorder( "Ficha" )
 							"editable": false
+							"foreground": sfield java.awt.Color white
 						} )
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
@@ -1784,5 +1785,3 @@ new FormModel {
 		} )
 	}
 }
-
-

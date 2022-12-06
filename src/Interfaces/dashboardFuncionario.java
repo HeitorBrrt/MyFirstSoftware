@@ -3,6 +3,8 @@ package Interfaces;
 import java.awt.event.*;
 import javax.swing.border.*;
 import Functions.DbFunctions;
+import atores.Cliente;
+import pedido.Venda;
 
 import java.awt.*;
 import java.sql.Connection;
@@ -219,87 +221,197 @@ public class dashboardFuncionario {
 
     // Mouse clicked
     private void homeBttMouseClicked(MouseEvent e) {
-        // TODO add your code here
+        homePanelF.setVisible(true);
+        cadClientePanel.setVisible(false);
+        efetuarVendaPanel.setVisible(false);
     }
 
     private void efetuarVendaBttMouseClicked(MouseEvent e) {
-        // TODO add your code here
+        homePanelF.setVisible(false);
+        cadClientePanel.setVisible(false);
+        efetuarVendaPanel.setVisible(true);
     }
 
     private void cliBtt1MouseClicked(MouseEvent e) {
-        // TODO add your code here
+        homePanelF.setVisible(false);
+        cadClientePanel.setVisible(true);
+        efetuarVendaPanel.setVisible(false);
     }
 
-    private void addBttVendasMouseClicked(MouseEvent e) {
-        // TODO add your code here
-    }
-
-    private void ClearBttVendasMouseClicked(MouseEvent e) {
-        // TODO add your code here
-    }
 
     // Mouse entered
     private void homeBttMouseEntered(MouseEvent e) {
-        // TODO add your code here
+        homeBtt.setBackground(new Color(37, 98, 156));
     }
-
     private void efetuarVendaBttMouseEntered(MouseEvent e) {
-        // TODO add your code here
+        efetuarVendaBtt.setBackground(new Color(56, 118, 29));
     }
-
     private void cliBtt1MouseEntered(MouseEvent e) {
-        // TODO add your code here
+        cliBtt1.setBackground(new Color(37, 98, 156));
     }
 
 
     // Mouse exited
     private void homeBttMouseExited(MouseEvent e) {
-        // TODO add your code here
+        homeBtt.setBackground(new Color(33, 37, 47));
     }
-
     private void efetuarVendaBttMouseExited(MouseEvent e) {
-        // TODO add your code here
+        efetuarVendaBtt.setBackground(new Color(33, 37, 47));
     }
-
     private void cliBtt1MouseExited(MouseEvent e) {
-        // TODO add your code here
+        cliBtt1.setBackground(new Color(33, 37, 47));
     }
-
 
 
     // Mouse pressed
     private void homeBttMousePressed(MouseEvent e) {
-        // TODO add your code here
+        homeBtt.setBackground(new Color(50, 129, 244));
     }
     private void efetuarVendaBttMousePressed(MouseEvent e) {
-        // TODO add your code here
+        efetuarVendaBtt.setBackground(new Color(87, 187, 45));
     }
-
     private void cliBtt1MousePressed(MouseEvent e) {
-        // TODO add your code here
+        cliBtt1.setBackground(new Color(50, 129, 244));
     }
-
 
 
     // Mouse released
     private void homeBttMouseReleased(MouseEvent e) {
-        // TODO add your code here
+        homeBtt.setBackground(new Color(37, 98, 156));
     }
-
     private void efetuarVendaBttMouseReleased(MouseEvent e) {
-        // TODO add your code here
+        efetuarVendaBtt.setBackground(new Color(56, 118, 29));
     }
-
     private void cliBtt1MouseReleased(MouseEvent e) {
-        // TODO add your code here
+        cliBtt1.setBackground(new Color(37, 98, 156));
     }
 
 
+    private String precTot(Integer idproduto, String quantidade) {
+        DbFunctions db = new DbFunctions();
+        Connection conn = db.connect_to_db("InfoTech", "postgres", "lbj23kb24mj45");
+        String precoVend = String.valueOf(db.getPrecoVenda_info(conn, idproduto));
+        String precAtual = venPrecoTotField.getText();
+        String precTotal = String.valueOf(Double.parseDouble(precoVend)*Double.parseDouble(quantidade));
+
+        return String.valueOf(Double.valueOf(Double.parseDouble(precAtual)+Double.parseDouble(precTotal)));
+    }
+
+    // Cadastro cliente
+    private void saveBttMouseClicked(MouseEvent e) {
+        DbFunctions db = new DbFunctions();
+        Connection conn = db.connect_to_db("InfoTech", "postgres", "lbj23kb24mj45");
+
+        String nome = cadClienteNomeField.getText();
+        String telefone = cadClienteTelefoneField.getText();
+        String endereco = cadClienteEnderecoField.getText();
+        String userUsuario = cadClienteUserField.getText();
+        GregorianCalendar calendar = new GregorianCalendar();
+        String dataCadastro =
+                calendar.get(GregorianCalendar.DAY_OF_MONTH) + "/" +
+                        calendar.get(GregorianCalendar.MONTH) + 1 + "/" +
+                        calendar.get(GregorianCalendar.YEAR);
+
+        if ((cadClienteNomeField.getText().length() > 0) && (cadClienteTelefoneField.getText().length() > 0) &&
+                (cadClienteEnderecoField.getText().length() > 0) && (cadClienteUserField.getText().length() > 0)) {
+            if(db.verificarUsuario(userUsuario, db.read_idUsuario(conn))) {
+                try {
+                    Cliente cliente = new Cliente(null, nome, telefone, endereco, dataCadastro, userUsuario);
+                    db.insert_row_cliente(conn, "cliente", cliente.getNome(), cliente.getTelefone(), cliente.getEndereco(), cliente.getDataCadastro(), cliente.getUserUsuario());
+                    clear();
+                    JOptionPane.showMessageDialog(mainPanelF, "Novo cliente cadastrado com sucesso");
+                } catch (Exception exception) {
+                    JOptionPane.showMessageDialog(null, exception.getMessage());
+                    clear();
+                }
+            }
+            else {
+                JOptionPane.showMessageDialog(null, "Usu\u00E1rio n\u00E3o encontrado");
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Campo vazio");
 
 
+        }
+    }
+    private void clearBttMouseClicked(MouseEvent e) {
+        // TODO add your code here
+    }
+
+    // Efetuar venda
     private void SaveBttVendasMouseClicked(MouseEvent e) {
-        // TODO add your code here
+        DbFunctions db = new DbFunctions();
+        Connection conn = db.connect_to_db("InfoTech", "postgres", "lbj23kb24mj45");
+
+        String descricao = fichaTextPane.getText();
+        String precoTotal = venPrecoTotField.getText();
+        String idCliente = venIdClienteField.getText();
+        String idUsuario = venIdUserField.getText();
+        String qtdItem = venQtdField.getText();
+        String idProduto = venIdProdutoField.getText();
+
+        GregorianCalendar calendar = new GregorianCalendar();
+        String datavenda = calendar.get(GregorianCalendar.DAY_OF_MONTH) + "/" +
+                calendar.get(GregorianCalendar.MONTH)+1 + "/" +
+                calendar.get(GregorianCalendar.YEAR);
+
+        if((venIdProdutoField.getText().length()>0) && (fichaTextPane.getText().length()>0) &&
+                (venQtdField.getText().length()>0) && (venIdUserField.getText().length()>0) &&
+                (venIdClienteField.getText().length()>0)){
+            try{
+                Venda venda = new Venda(null, descricao, precoTotal, datavenda, idCliente, idUsuario, qtdItem, idProduto);
+                db.insert_row_venda(conn,  venda.getDescricao(),venda.getIdCliente(), venda.getIdUsuario(), venda.getPrecoTotal(), venda.getDataVenda());
+                JOptionPane.showMessageDialog(null, "Venda efetuada");
+                db.vendaEfetuada(conn, idUsuario, qtdItem);
+
+            }catch (Exception exception){
+                JOptionPane.showMessageDialog(null, exception);
+            }
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "Campo vazio");
+        }
     }
+    private void ClearBttVendasMouseClicked(MouseEvent e) {
+        venIdProdutoField.setText("");
+        venQtdField.setText("");
+        venIdUserField.setText("");
+        venIdClienteField.setText("");
+
+    }
+    private void addBttVendasMouseClicked(MouseEvent e) {
+        DbFunctions db = new DbFunctions();
+        Connection conn = db.connect_to_db("InfoTech", "postgres", "lbj23kb24mj45");
+
+        String nomeProduto = db.getNome_info(conn, "produto", "idproduto", venIdProdutoField.getText());
+        String nomeCliente = db.getNome_info(conn, "cliente", "idcliente", venIdClienteField.getText());
+        String nomeUsuario = db.getNome_info(conn, "usuario", "usuario", venIdUserField.getText());
+
+        if((venIdProdutoField.getText().length()>0) && (venQtdField.getText().length()>0) && (venIdClienteField.getText().length()>0) && (venIdUserField.getText().length()>0)){
+            if(db.verificarUsuario(venIdUserField.getText(), db.read_idUsuario(conn)) && db.verificarCliente(venIdClienteField.getText(), db.read_idCliente(conn)) && (db.verificarProduto(venIdProdutoField.getText(), db.read_idProduto(conn)))){
+                fichaTextPane.setText(fichaTextPane.getText()+
+                        "ID do produto: "+ venIdProdutoField.getText()+" \n" +nomeProduto+" \n"+
+                        "Quantidade: "+ venQtdField.getText()+" \n"+
+                        "ID do Cliente: "+venIdClienteField.getText()+" \n" + nomeCliente + " \n"+
+                        "ID Usuário: "+ venIdUserField.getText()+" \n"+nomeUsuario+" \n\n");
+
+                Integer idproduto = Integer.valueOf(venIdProdutoField.getText());
+                String quantidade = venQtdField.getText();
+                venPrecoTotField.setText(precTot(idproduto, quantidade));
+                db.updateQtdItens(conn, String.valueOf(idproduto), quantidade);
+            }
+            else {
+                JOptionPane.showMessageDialog(null, "idCliente/idUsuario/idproduto n\u00E3o existe");
+            }
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "Campo vazio");
+        }
+
+    }
+
+
     /*private void corAleatoria(){
         int randomNum = ThreadLocalRandom.current().nextInt(0, 20);
         Color color;
@@ -463,6 +575,24 @@ public class dashboardFuncionario {
         label11 = new JLabel();
         label39 = new JLabel();
         venPrecoTotField = new JLabel();
+        cadClientePanel = new JPanel();
+        sidePanel2 = new JPanel();
+        label8 = new JLabel();
+        cadClienteNomeField = new JTextField();
+        separator1 = new JSeparator();
+        label9 = new JLabel();
+        cadClienteTelefoneField = new JTextField();
+        separator2 = new JSeparator();
+        label10 = new JLabel();
+        cadClienteEnderecoField = new JTextField();
+        label12 = new JLabel();
+        cadClienteUserField = new JTextField();
+        separator5 = new JSeparator();
+        separator6 = new JSeparator();
+        saveBtt = new JButton();
+        clearBtt = new JButton();
+        label13 = new JLabel();
+        panel10 = new JPanel();
 
         //======== mainPanelF ========
         {
@@ -1021,6 +1151,206 @@ public class dashboardFuncionario {
                     );
                 }
                 centralPanel.add(efetuarVendaPanel, "card2");
+
+                //======== cadClientePanel ========
+                {
+                    cadClientePanel.setBackground(new Color(0x21252f));
+
+                    //======== sidePanel2 ========
+                    {
+                        sidePanel2.setBackground(new Color(0x009999));
+
+                        GroupLayout sidePanel2Layout = new GroupLayout(sidePanel2);
+                        sidePanel2.setLayout(sidePanel2Layout);
+                        sidePanel2Layout.setHorizontalGroup(
+                            sidePanel2Layout.createParallelGroup()
+                                .addGap(0, 80, Short.MAX_VALUE)
+                        );
+                        sidePanel2Layout.setVerticalGroup(
+                            sidePanel2Layout.createParallelGroup()
+                                .addGap(0, 900, Short.MAX_VALUE)
+                        );
+                    }
+
+                    //---- label8 ----
+                    label8.setText("Nome");
+                    label8.setForeground(Color.white);
+                    label8.setBackground(new Color(0x21252f));
+                    label8.setFont(new Font("Verdana", Font.PLAIN, 12));
+
+                    //---- cadClienteNomeField ----
+                    cadClienteNomeField.setBorder(null);
+                    cadClienteNomeField.setBackground(new Color(0x21252f));
+                    cadClienteNomeField.setForeground(Color.white);
+
+                    //---- separator1 ----
+                    separator1.setForeground(new Color(0x009999));
+                    separator1.setBackground(new Color(0x21252f));
+                    separator1.setOpaque(true);
+                    separator1.setBorder(null);
+
+                    //---- label9 ----
+                    label9.setText("Telefone");
+                    label9.setForeground(Color.white);
+                    label9.setBackground(new Color(0x21252f));
+                    label9.setFont(new Font("Verdana", Font.PLAIN, 12));
+
+                    //---- cadClienteTelefoneField ----
+                    cadClienteTelefoneField.setBorder(null);
+                    cadClienteTelefoneField.setBackground(new Color(0x21252f));
+                    cadClienteTelefoneField.setForeground(Color.white);
+
+                    //---- separator2 ----
+                    separator2.setForeground(new Color(0x009999));
+                    separator2.setBackground(new Color(0x21252f));
+                    separator2.setOpaque(true);
+                    separator2.setBorder(null);
+
+                    //---- label10 ----
+                    label10.setText("Endere\u00e7o");
+                    label10.setForeground(Color.white);
+                    label10.setBackground(new Color(0x21252f));
+                    label10.setFont(new Font("Verdana", Font.PLAIN, 12));
+
+                    //---- cadClienteEnderecoField ----
+                    cadClienteEnderecoField.setBorder(null);
+                    cadClienteEnderecoField.setForeground(Color.white);
+                    cadClienteEnderecoField.setBackground(new Color(0x21252f));
+
+                    //---- label12 ----
+                    label12.setText("ID Usu\u00e1rio");
+                    label12.setForeground(Color.white);
+                    label12.setBackground(new Color(0x21252f));
+                    label12.setFont(new Font("Verdana", Font.PLAIN, 12));
+
+                    //---- cadClienteUserField ----
+                    cadClienteUserField.setBorder(null);
+                    cadClienteUserField.setForeground(Color.white);
+                    cadClienteUserField.setBackground(new Color(0x21252f));
+
+                    //---- separator5 ----
+                    separator5.setForeground(new Color(0x009999));
+                    separator5.setBackground(new Color(0x21252f));
+                    separator5.setOpaque(true);
+                    separator5.setBorder(null);
+
+                    //---- separator6 ----
+                    separator6.setForeground(new Color(0x009999));
+                    separator6.setBackground(new Color(0x21252f));
+                    separator6.setOpaque(true);
+                    separator6.setBorder(null);
+
+                    //---- saveBtt ----
+                    saveBtt.setText("Salvar");
+                    saveBtt.setBackground(new Color(0x21252f));
+                    saveBtt.setForeground(Color.white);
+                    saveBtt.addMouseListener(new MouseAdapter() {
+                        @Override
+                        public void mouseClicked(MouseEvent e) {
+                            saveBttMouseClicked(e);
+                        }
+                    });
+
+                    //---- clearBtt ----
+                    clearBtt.setText("Limpar");
+                    clearBtt.setBackground(new Color(0x21252f));
+                    clearBtt.setForeground(Color.white);
+                    clearBtt.addMouseListener(new MouseAdapter() {
+                        @Override
+                        public void mouseClicked(MouseEvent e) {
+                            clearBttMouseClicked(e);
+                        }
+                    });
+
+                    //---- label13 ----
+                    label13.setText("Cadastrar cliente");
+                    label13.setFont(new Font("Yu Gothic Light", Font.PLAIN, 36));
+                    label13.setForeground(Color.white);
+                    label13.setBackground(new Color(0x21252f));
+
+                    //======== panel10 ========
+                    {
+                        panel10.setBackground(new Color(0x21252f));
+
+                        GroupLayout panel10Layout = new GroupLayout(panel10);
+                        panel10.setLayout(panel10Layout);
+                        panel10Layout.setHorizontalGroup(
+                            panel10Layout.createParallelGroup()
+                                .addGap(0, 380, Short.MAX_VALUE)
+                        );
+                        panel10Layout.setVerticalGroup(
+                            panel10Layout.createParallelGroup()
+                                .addGap(0, 136, Short.MAX_VALUE)
+                        );
+                    }
+
+                    GroupLayout cadClientePanelLayout = new GroupLayout(cadClientePanel);
+                    cadClientePanel.setLayout(cadClientePanelLayout);
+                    cadClientePanelLayout.setHorizontalGroup(
+                        cadClientePanelLayout.createParallelGroup()
+                            .addGroup(cadClientePanelLayout.createSequentialGroup()
+                                .addComponent(sidePanel2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addGap(6, 6, 6)
+                                .addGroup(cadClientePanelLayout.createParallelGroup()
+                                    .addComponent(panel10, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(label13, GroupLayout.PREFERRED_SIZE, 380, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(label8)
+                                    .addComponent(cadClienteNomeField, GroupLayout.PREFERRED_SIZE, 380, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(separator1, GroupLayout.PREFERRED_SIZE, 380, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(label9)
+                                    .addComponent(cadClienteTelefoneField, GroupLayout.PREFERRED_SIZE, 380, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(separator2, GroupLayout.PREFERRED_SIZE, 380, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(label10)
+                                    .addComponent(cadClienteEnderecoField, GroupLayout.PREFERRED_SIZE, 380, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(separator6, GroupLayout.PREFERRED_SIZE, 380, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(label12)
+                                    .addComponent(cadClienteUserField, GroupLayout.PREFERRED_SIZE, 380, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(separator5, GroupLayout.PREFERRED_SIZE, 380, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(saveBtt, GroupLayout.PREFERRED_SIZE, 380, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(clearBtt, GroupLayout.PREFERRED_SIZE, 380, GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 806, Short.MAX_VALUE))
+                    );
+                    cadClientePanelLayout.setVerticalGroup(
+                        cadClientePanelLayout.createParallelGroup()
+                            .addGroup(GroupLayout.Alignment.TRAILING, cadClientePanelLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(cadClientePanelLayout.createParallelGroup()
+                                    .addComponent(sidePanel2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(cadClientePanelLayout.createSequentialGroup()
+                                        .addComponent(panel10, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                        .addGap(6, 6, 6)
+                                        .addComponent(label13, GroupLayout.PREFERRED_SIZE, 84, GroupLayout.PREFERRED_SIZE)
+                                        .addGap(6, 6, 6)
+                                        .addComponent(label8)
+                                        .addGap(6, 6, 6)
+                                        .addComponent(cadClienteNomeField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                        .addGap(6, 6, 6)
+                                        .addComponent(separator1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                        .addGap(12, 12, 12)
+                                        .addComponent(label9)
+                                        .addGap(6, 6, 6)
+                                        .addComponent(cadClienteTelefoneField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                        .addGap(6, 6, 6)
+                                        .addComponent(separator2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                        .addGap(12, 12, 12)
+                                        .addComponent(label10)
+                                        .addGap(6, 6, 6)
+                                        .addComponent(cadClienteEnderecoField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                        .addGap(6, 6, 6)
+                                        .addComponent(separator6, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(label12)
+                                        .addGap(6, 6, 6)
+                                        .addComponent(cadClienteUserField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                        .addGap(6, 6, 6)
+                                        .addComponent(separator5, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(saveBtt)
+                                        .addGap(6, 6, 6)
+                                        .addComponent(clearBtt))))
+                    );
+                }
+                centralPanel.add(cadClientePanel, "card3");
             }
 
             GroupLayout mainPanelFLayout = new GroupLayout(mainPanelF);
@@ -1048,7 +1378,7 @@ public class dashboardFuncionario {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-    public JPanel mainPanelF;
+    private JPanel mainPanelF;
     private JPanel sidePanel;
     private JPanel infoPanel;
     private JLabel nomeGerenteLbl;
@@ -1089,6 +1419,24 @@ public class dashboardFuncionario {
     private JLabel label11;
     private JLabel label39;
     private JLabel venPrecoTotField;
+    private JPanel cadClientePanel;
+    private JPanel sidePanel2;
+    private JLabel label8;
+    private JTextField cadClienteNomeField;
+    private JSeparator separator1;
+    private JLabel label9;
+    private JTextField cadClienteTelefoneField;
+    private JSeparator separator2;
+    private JLabel label10;
+    private JTextField cadClienteEnderecoField;
+    private JLabel label12;
+    private JTextField cadClienteUserField;
+    private JSeparator separator5;
+    private JSeparator separator6;
+    private JButton saveBtt;
+    private JButton clearBtt;
+    private JLabel label13;
+    private JPanel panel10;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
     public static void main(String[] args) {
         ImageIcon imageIcon = new ImageIcon("src/icons/icon.png");

@@ -666,6 +666,18 @@ public class dashboardGerente {
         ediProdutoPanel.setVisible(false);
         verTabelasPanel.setVisible(false);
     }
+    private void cliBtt1MouseClicked(MouseEvent e) {
+        clear();
+        homePanel.setVisible(false);
+        efetuarVendaPanel.setVisible(false);
+        cadFuncionarioPanel.setVisible(false);
+        ediFuncionarioPanel.setVisible(false);
+        cadClientePanel.setVisible(true);
+        ediClientePanel.setVisible(false);
+        cadProdutoPanel.setVisible(false);
+        ediProdutoPanel.setVisible(false);
+        verTabelasPanel.setVisible(false);
+    }
     private void funcBtt1MouseClicked(MouseEvent e) {
         clear();
         homePanel.setVisible(false);
@@ -690,18 +702,7 @@ public class dashboardGerente {
         ediProdutoPanel.setVisible(false);
         verTabelasPanel.setVisible(false);
     }
-    private void cliBtt1MouseClicked(MouseEvent e) {
-        clear();
-        homePanel.setVisible(false);
-        efetuarVendaPanel.setVisible(false);
-        cadFuncionarioPanel.setVisible(false);
-        ediFuncionarioPanel.setVisible(false);
-        cadClientePanel.setVisible(true);
-        ediClientePanel.setVisible(false);
-        cadProdutoPanel.setVisible(false);
-        ediProdutoPanel.setVisible(false);
-        verTabelasPanel.setVisible(false);
-    }
+
     private void cliBtt2MouseClicked(MouseEvent e) {
         clear();
         homePanel.setVisible(false);
@@ -787,6 +788,7 @@ public class dashboardGerente {
     private void efetuarVendaBttMouseExited(MouseEvent e) {
         efetuarVendaBtt.setBackground(new Color(33, 37, 47));
     }
+
     private void funcBtt1MouseExited(MouseEvent e) {
         funcBtt1.setBackground(new Color(33, 37, 47));
     }
@@ -816,14 +818,15 @@ public class dashboardGerente {
     private void efetuarVendaBttMousePressed(MouseEvent e) {
         efetuarVendaBtt.setBackground(new Color(87, 187, 45));
     }
+    private void cliBtt1MousePressed(MouseEvent e) {
+        cliBtt1.setBackground(new Color(50, 129, 244));
+    }
+
     private void funcBtt1MousePressed(MouseEvent e) {
         funcBtt1.setBackground(new Color(50, 129, 244));
     }
     private void funcBtt2MousePressed(MouseEvent e) {
         funcBtt2.setBackground(new Color(50, 129, 244));
-    }
-    private void cliBtt1MousePressed(MouseEvent e) {
-        cliBtt1.setBackground(new Color(50, 129, 244));
     }
     private void cliBtt2MousePressed(MouseEvent e) {
         cliBtt2.setBackground(new Color(50, 129, 244));
@@ -845,14 +848,15 @@ public class dashboardGerente {
     private void efetuarVendaBttMouseReleased(MouseEvent e) {
         efetuarVendaBtt.setBackground(new Color(56, 118, 29));
     }
+    private void cliBtt1MouseReleased(MouseEvent e) {
+        cliBtt1.setBackground(new Color(37, 98, 156));
+    }
+
     private void funcBtt1MouseReleased(MouseEvent e) {
         funcBtt1.setBackground(new Color(37, 98, 156));
     }
     private void funcBtt2MouseReleased(MouseEvent e) {
         funcBtt2.setBackground(new Color(37, 98, 156));
-    }
-    private void cliBtt1MouseReleased(MouseEvent e) {
-        cliBtt1.setBackground(new Color(37, 98, 156));
     }
     private void cliBtt2MouseReleased(MouseEvent e) {
         cliBtt2.setBackground(new Color(37, 98, 156));
