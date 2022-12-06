@@ -13,15 +13,17 @@ import javax.swing.GroupLayout;
  */
 public class dashboardFuncionario {
     public dashboardFuncionario() {
-        // setNomeGerente(nomeGerenteLbl, );
-        // nomeGerenteLbl.setText();
+        DbFunctions db = new DbFunctions();
+        Connection conn = db.connect_to_db("BigData", "postgres", "lbj23kb24mj45");
+        login login = new login();
+
+
         initComponents();
     }
     public void setNomeGerente(JLabel label, JTextField jTextField){
         DbFunctions db = new DbFunctions();
-        Connection conn = db.connect_to_db("BigData", "postgres", "lbj23kb24mj45");
 
-        label.setText(db.getNomeUser(conn, jTextField.getText()));
+        Connection conn = db.connect_to_db("BigData", "postgres", "lbj23kb24mj45");
     }
     /*private void corAleatoria(){
         int randomNum = ThreadLocalRandom.current().nextInt(0, 20);

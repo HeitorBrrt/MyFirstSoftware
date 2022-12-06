@@ -5,18 +5,25 @@ import Functions.DbFunctions;
 import java.awt.*;
 import java.awt.event.*;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import javax.swing.*;
 import javax.swing.GroupLayout;
 
 /**
  * @author Heitor & Felipe
  */
+
 public class login {
     public login() {
         DbFunctions db = new DbFunctions();
         Connection conn = db.connect_to_db("InfoTech", "postgres", "lbj23kb24mj45");
         db.createTables(conn);
         initComponents();
+    }
+
+    public String getLoginUser() {
+        return userField.getText();
     }
 
     private void showPassMouseClicked(MouseEvent e) {
@@ -208,6 +215,20 @@ public class login {
     private JButton saveBtt;
     private JButton closeBtt;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
+
+    public String getNomeUser(Connection conn, String user) {
+        PreparedStatement statement;
+        try {
+            statement=conn.prepareStatement(String.format("SELECT nome FROM usuario WHERE usuario.usuario='%s'", user));
+            ResultSet rs=statement.executeQuery();
+            while (rs.next()) {
+                return rs.getString("usuariotipo");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return null;
+    }
 
     public static void main(String[] args) {
         JFrame telaLogin = new JFrame("Tela de Login");

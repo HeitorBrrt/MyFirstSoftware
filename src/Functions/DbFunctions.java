@@ -717,19 +717,7 @@ public class DbFunctions {
         return null;
     }
 
-    public String getNomeUser(Connection conn, String user) {
-        PreparedStatement statement;
-        try {
-            statement=conn.prepareStatement(String.format("SELECT nome FROM usuario WHERE usuario.usuario='%s'", user));
-            ResultSet rs=statement.executeQuery();
-            while (rs.next()) {
-                return rs.getString("usuariotipo");
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-        }
-        return null;
-    }
+
 
     public static void main(String[] args) {
         DbFunctions db = new DbFunctions();

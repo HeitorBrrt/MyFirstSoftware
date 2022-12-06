@@ -1,0 +1,76 @@
+JFDML JFormDesigner: "8.0.0.0.194" Java: "17.0.5" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq l {comp sidePanel:::p::p, space s:::p, comp homePanelF::::1260:x, space :::p}}"
+			"$verticalGroup": "par l {seq t {space :0:0:x, par l:::p {comp sidePanel:::::x, comp homePanelF:::::x}, space :::p}}"
+		} ) {
+			name: "mainPanelF"
+			"background": new java.awt.Color( 33, 37, 47, 255 )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq l {space :::p, comp infoPanel:::p::p, space ::72:x}}"
+				"$verticalGroup": "par l {seq l {space :::p, comp infoPanel:::p::p, space :::x}}"
+			} ) {
+				name: "sidePanel"
+				"background": new java.awt.Color( 33, 37, 47, 255 )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+					"$horizontalGroup": "par l {seq l {space :::p, comp manIconPanel:::p::p, space u:::p, comp nomeGerenteLbl:::::x, space :::p}}"
+					"$verticalGroup": "par l {seq l {space :::p, par l {comp manIconPanel:::p::p, comp nomeGerenteLbl:::p::p}, space :p:22:p}}"
+				} ) {
+					name: "infoPanel"
+					"background": new java.awt.Color( 33, 37, 47, 255 )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "nomeGerenteLbl"
+						"text": "NomeGerente"
+						"foreground": new java.awt.Color( 255, 255, 255, 255 )
+						"background": new java.awt.Color( 33, 37, 47, 255 )
+					} )
+					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+						"$horizontalGroup": "par l {seq t {space :0:0:x, comp managerIcon:::p:80:p}}"
+						"$verticalGroup": "par l {seq t {space :0:0:x, comp managerIcon:::p:80:p}}"
+					} ) {
+						name: "manIconPanel"
+						"background": new java.awt.Color( 33, 37, 47, 255 )
+						add( new FormComponent( "javax.swing.JLabel" ) {
+							name: "managerIcon"
+							"icon": new com.jformdesigner.model.SwingIcon( 0, "/icons/managerIcon.png" )
+							"background": new java.awt.Color( 33, 37, 43, 0 )
+						} )
+					} )
+				} )
+			} )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq t {space :::p, par l {seq l {space :p:770:p, par l {comp greetLbl:::p:500:p, comp homeDateLbl:::p:500:p}, space :0:0:x}, comp label14::t:p:1272:p}, space :::p}}"
+				"$verticalGroup": "par l {seq l {space :::p, comp label14:::p::p, space :6:6:p, comp greetLbl:::p:40:p, space :5:5:p, comp homeDateLbl:::p:40:p, space ::584:x}}"
+			} ) {
+				name: "homePanelF"
+				"background": new java.awt.Color( 33, 37, 47, 255 )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label14"
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/icons/homeLogo.png" )
+					"foreground": new java.awt.Color( 33, 37, 47, 255 )
+					"background": new java.awt.Color( 33, 37, 47, 255 )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "greetLbl"
+					"text": "Bem vindo, "
+					"foreground": sfield java.awt.Color black
+					"background": new java.awt.Color( 33, 37, 47, 255 )
+					"font": new java.awt.Font( "Yu Gothic UI Light", 0, 26 )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "homeDateLbl"
+					"background": new java.awt.Color( 33, 37, 47, 255 )
+					"foreground": sfield java.awt.Color black
+					"font": new java.awt.Font( "Yu Gothic UI Light", 0, 26 )
+					"text": "Data"
+				} )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 15, 30 )
+			"size": new java.awt.Dimension( 1540, 900 )
+		} )
+	}
+}
