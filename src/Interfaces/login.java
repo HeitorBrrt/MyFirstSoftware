@@ -22,9 +22,6 @@ public class login {
         initComponents();
     }
 
-    public String getLoginUser() {
-        return userField.getText();
-    }
 
     private void showPassMouseClicked(MouseEvent e) {
         if(showPass.isSelected()) {

@@ -1,6 +1,5 @@
 package Interfaces;
 
-
 import javax.swing.border.BevelBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
@@ -20,8 +19,6 @@ import atores.Cliente;
 import atores.Usuario;
 import estoque.Produto;
 import pedido.Venda;
-
-
 
 /**
  * {@code @Author} Heitor
@@ -1987,6 +1984,7 @@ public class dashboardGerente {
                         //---- fichaTextPane ----
                         fichaTextPane.setBorder(new TitledBorder("Ficha"));
                         fichaTextPane.setEditable(false);
+                        fichaTextPane.setForeground(Color.white);
                         scrollPane1.setViewportView(fichaTextPane);
                     }
 
@@ -4452,7 +4450,7 @@ public class dashboardGerente {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-    JPanel mainPanel;
+    public JPanel mainPanel;
     private JPanel panel3;
     private JPanel logoPanel;
     private JPanel infoPanel;

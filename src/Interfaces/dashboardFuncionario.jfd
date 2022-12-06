@@ -4,14 +4,14 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq l {comp sidePanel:::p::p, space s:::p, comp homePanelF::::1260:x, space :::p}}"
-			"$verticalGroup": "par l {seq t {space :0:0:x, par l:::p {comp sidePanel:::::x, comp homePanelF:::::x}, space :::p}}"
+			"$horizontalGroup": "par l {seq l {comp sidePanel:::p::p, space :::p, comp centralPanel::::1272:x, space :::p}}"
+			"$verticalGroup": "par l {seq {par l {comp sidePanel:::p::p, seq {space :::p, comp centralPanel::::0:x}}, space :::x}}"
 		} ) {
 			name: "mainPanelF"
 			"background": new java.awt.Color( 33, 37, 47, 255 )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq l {space :::p, comp infoPanel:::p::p, space ::72:x}}"
-				"$verticalGroup": "par l {seq l {space :::p, comp infoPanel:::p::p, space :::x}}"
+				"$horizontalGroup": "par l {seq {space :::p, par l {comp homeBtt::t:::x, comp efetuarVendaBtt::l:::x, comp cliBtt1::l:::x, seq l {comp infoPanel:::::p, space :0:73:x}}, space :::p}}"
+				"$verticalGroup": "par l {seq l {space :::p, comp infoPanel:::p::p, space :p:39:p, comp homeBtt:::p::p, space :::p, comp efetuarVendaBtt:::p::p, space :::p, comp cliBtt1:::p::p, space ::585:x}}"
 			} ) {
 				name: "sidePanel"
 				"background": new java.awt.Color( 33, 37, 47, 255 )
@@ -23,7 +23,7 @@ new FormModel {
 					"background": new java.awt.Color( 33, 37, 47, 255 )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "nomeGerenteLbl"
-						"text": "NomeGerente"
+						"text": "NomeFuncio"
 						"foreground": new java.awt.Color( 255, 255, 255, 255 )
 						"background": new java.awt.Color( 33, 37, 47, 255 )
 					} )
@@ -40,32 +40,247 @@ new FormModel {
 						} )
 					} )
 				} )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+					"$horizontalGroup": "par l {seq l {space :::p, comp label1:::p::p, space ::193:x}}"
+					"$verticalGroup": "par l {seq l {space :::p, comp label1::::38:x, space :::p}}"
+				} ) {
+					name: "homeBtt"
+					"background": &Color0 new java.awt.Color( 33, 37, 47, 255 )
+					"border": sfield com.jformdesigner.model.FormObject NULL_VALUE
+					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "homeBttMouseClicked", true ) )
+					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseEntered", "homeBttMouseEntered", true ) )
+					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseExited", "homeBttMouseExited", true ) )
+					addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "homeBttMousePressed", true ) )
+					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "homeBttMouseReleased", true ) )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label1"
+						"text": "Home"
+						"foreground": sfield java.awt.Color white
+						"font": &Font0 new java.awt.Font( "Yu Gothic UI Light", 0, 18 )
+						"background": &Color1 new java.awt.Color( 33, 37, 47, 255 )
+						"horizontalAlignment": 2
+					} )
+				} )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+					"$horizontalGroup": "par l {seq l {space :::p, comp label57:::p::p, space ::134:x}}"
+					"$verticalGroup": "par l {seq l {space :::p, comp label57::::38:x, space :::p}}"
+				} ) {
+					name: "efetuarVendaBtt"
+					"border": sfield com.jformdesigner.model.FormObject NULL_VALUE
+					"background": new java.awt.Color( 33, 37, 47, 255 )
+					"foreground": new java.awt.Color( 0, 0, 0, 255 )
+					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "efetuarVendaBttMouseClicked", true ) )
+					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseEntered", "efetuarVendaBttMouseEntered", true ) )
+					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseExited", "efetuarVendaBttMouseExited", true ) )
+					addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "efetuarVendaBttMousePressed", true ) )
+					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "efetuarVendaBttMouseReleased", true ) )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label57"
+						"text": "Efetuar Venda"
+						"foreground": sfield java.awt.Color white
+						"font": new java.awt.Font( "Yu Gothic UI Light", 0, 18 )
+					} )
+				} )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+					"$horizontalGroup": "par l {seq l {space :::p, comp label4:::p::p, space ::113:x}}"
+					"$verticalGroup": "par l {seq t {space :::p, comp label4::::38:x, space :::p}}"
+				} ) {
+					name: "cliBtt1"
+					"background": #Color0
+					"border": sfield com.jformdesigner.model.FormObject NULL_VALUE
+					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "cliBtt1MouseClicked", true ) )
+					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseEntered", "cliBtt1MouseEntered", true ) )
+					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseExited", "cliBtt1MouseExited", true ) )
+					addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "cliBtt1MousePressed", true ) )
+					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseReleased", "cliBtt1MouseReleased", true ) )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label4"
+						"text": "Cadastrar cliente"
+						"foreground": sfield java.awt.Color white
+						"font": #Font0
+						"background": #Color1
+						"horizontalAlignment": 2
+					} )
+				} )
 			} )
-			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq t {space :::p, par l {seq l {space :p:770:p, par l {comp greetLbl:::p:500:p, comp homeDateLbl:::p:500:p}, space :0:0:x}, comp label14::t:p:1272:p}, space :::p}}"
-				"$verticalGroup": "par l {seq l {space :::p, comp label14:::p::p, space :6:6:p, comp greetLbl:::p:40:p, space :5:5:p, comp homeDateLbl:::p:40:p, space ::584:x}}"
-			} ) {
-				name: "homePanelF"
-				"background": new java.awt.Color( 33, 37, 47, 255 )
-				add( new FormComponent( "javax.swing.JLabel" ) {
-					name: "label14"
-					"icon": new com.jformdesigner.model.SwingIcon( 0, "/icons/homeLogo.png" )
-					"foreground": new java.awt.Color( 33, 37, 47, 255 )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.CardLayout ) ) {
+				name: "centralPanel"
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+					"$horizontalGroup": "par l {seq t {space :::p, par l {seq l {space :p:770:p, par l {comp greetLbl:::p:500:p, comp homeDateLbl:::p:500:p}, space :0:0:x}, comp label14::t:p:1272:p}, space :::p}}"
+					"$verticalGroup": "par l {seq l {space :::p, comp label14:::p::p, space :6:6:p, comp greetLbl:::p:40:p, space :5:5:p, comp homeDateLbl:::p:40:p, space :::x}}"
+				} ) {
+					name: "homePanelF"
 					"background": new java.awt.Color( 33, 37, 47, 255 )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label14"
+						"icon": new com.jformdesigner.model.SwingIcon( 0, "/icons/homeLogo.png" )
+						"foreground": new java.awt.Color( 33, 37, 47, 255 )
+						"background": new java.awt.Color( 33, 37, 47, 255 )
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "greetLbl"
+						"text": "Bem vindo, "
+						"foreground": sfield java.awt.Color black
+						"background": new java.awt.Color( 33, 37, 47, 255 )
+						"font": new java.awt.Font( "Yu Gothic UI Light", 0, 26 )
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "homeDateLbl"
+						"background": new java.awt.Color( 33, 37, 47, 255 )
+						"foreground": sfield java.awt.Color black
+						"font": new java.awt.Font( "Yu Gothic UI Light", 0, 26 )
+						"text": "Data"
+					} )
+				}, new FormLayoutConstraints( class java.lang.String ) {
+					"value": "card1"
 				} )
-				add( new FormComponent( "javax.swing.JLabel" ) {
-					name: "greetLbl"
-					"text": "Bem vindo, "
-					"foreground": sfield java.awt.Color black
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+					"$horizontalGroup": "par l {seq t {space :::x, comp panel7:::p::p, space :6:6:p, par l {seq l {space :20:20:p, comp panel14:::p::p}, comp label60:::p:380:p, seq l {comp label61:::p::p, space :255:255:p, comp label11:::p::p}, seq l {comp venIdProdutoField:::p:380:p, space :18:18:p, comp label39:::p::p, space :6:6:p, comp venPrecoTotField:::p:38:p}, comp separator40:::p:380:p, comp label65:::p::p, comp venQtdField:::p:380:p, comp separator45:::p:380:p, comp label62:::p::p, comp venIdUserField:::p:380:p, comp separator42:::p:380:p, comp label63:::p::p, comp venIdClienteField:::p:380:p, comp separator44:::p:380:p, seq l {comp addBttVendas:::p:186:p, space :6:6:p, comp ClearBttVendas:::p:188:p}, seq l {space :97:97:p, comp SaveBttVendas:::p:186:p}}, space :p:300:p, comp scrollPane1:::p:430:p}}"
+					"$verticalGroup": "par l {seq t {space :::x, par l {comp panel7:::p::p, seq l {comp panel14:::p::p, space :6:6:p, comp label60:::p:84:p, space :6:6:p, par l {comp label61:::p::p, comp label11:::p::p}, space :6:6:p, par l {comp venIdProdutoField:::p::p, seq l {space :4:4:p, par l {comp label39:::p::p, comp venPrecoTotField:::p::p}}}, space :6:6:p, comp separator40:::p::p, space :12:12:p, comp label65:::p::p, space :6:6:p, comp venQtdField:::p::p, space :6:6:p, comp separator45:::p::p, space :12:12:p, comp label62:::p::p, space :6:6:p, comp venIdUserField:::p::p, space :6:6:p, comp separator42:::p::p, space :12:12:p, comp label63:::p::p, space :6:6:p, comp venIdClienteField:::p::p, space :6:6:p, comp separator44:::p::p, space :18:18:p, par l {comp addBttVendas:::p::p, comp ClearBttVendas:::p::p}, space :6:6:p, comp SaveBttVendas:::p::p}, comp scrollPane1::l:p:900:p}, space :::p}}"
+				} ) {
+					name: "efetuarVendaPanel"
 					"background": new java.awt.Color( 33, 37, 47, 255 )
-					"font": new java.awt.Font( "Yu Gothic UI Light", 0, 26 )
-				} )
-				add( new FormComponent( "javax.swing.JLabel" ) {
-					name: "homeDateLbl"
-					"background": new java.awt.Color( 33, 37, 47, 255 )
-					"foreground": sfield java.awt.Color black
-					"font": new java.awt.Font( "Yu Gothic UI Light", 0, 26 )
-					"text": "Data"
+					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+						"$horizontalGroup": "par l {space :0:80:x}"
+						"$verticalGroup": "par l {space :0:900:x}"
+					} ) {
+						name: "panel7"
+						"background": new java.awt.Color( 0, 153, 51, 255 )
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label60"
+						"text": "Efetuar venda"
+						"font": new java.awt.Font( "Yu Gothic Light", 0, 36 )
+						"foreground": sfield java.awt.Color white
+						"background": sfield java.awt.Color white
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label61"
+						"text": "Identificador do produto"
+						"foreground": sfield java.awt.Color white
+						"font": new java.awt.Font( "Verdana", 0, 12 )
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "venIdProdutoField"
+						"border": sfield com.jformdesigner.model.FormObject NULL_VALUE
+						"foreground": sfield java.awt.Color white
+						"background": &Color2 new java.awt.Color( 33, 37, 47, 255 )
+					} )
+					add( new FormComponent( "javax.swing.JSeparator" ) {
+						name: "separator40"
+						"background": &Color3 new java.awt.Color( 33, 37, 47, 255 )
+						"foreground": &Color4 new java.awt.Color( 0, 153, 51, 255 )
+						"border": sfield com.jformdesigner.model.FormObject NULL_VALUE
+					} )
+					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+						name: "scrollPane1"
+						add( new FormComponent( "javax.swing.JTextPane" ) {
+							name: "fichaTextPane"
+							"border": new javax.swing.border.TitledBorder( "Ficha" )
+							"editable": false
+							"foreground": sfield java.awt.Color white
+						} )
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label62"
+						"text": "ID Usuário"
+						"foreground": sfield java.awt.Color white
+						"font": &Font1 new java.awt.Font( "Verdana", 0, 12 )
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "venIdUserField"
+						"border": sfield com.jformdesigner.model.FormObject NULL_VALUE
+						"foreground": sfield java.awt.Color white
+						"background": #Color2
+					} )
+					add( new FormComponent( "javax.swing.JSeparator" ) {
+						name: "separator42"
+						"background": #Color3
+						"foreground": #Color4
+						"border": sfield com.jformdesigner.model.FormObject NULL_VALUE
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label63"
+						"text": "ID Cliente"
+						"foreground": sfield java.awt.Color white
+						"font": #Font1
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "venIdClienteField"
+						"foreground": sfield java.awt.Color white
+						"border": sfield com.jformdesigner.model.FormObject NULL_VALUE
+						"background": #Color2
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label65"
+						"text": "Quantidade"
+						"font": new java.awt.Font( "Verdana", 0, 12 )
+						"foreground": sfield java.awt.Color white
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "venQtdField"
+						"border": sfield com.jformdesigner.model.FormObject NULL_VALUE
+						"background": #Color2
+						"foreground": sfield java.awt.Color white
+					} )
+					add( new FormComponent( "javax.swing.JSeparator" ) {
+						name: "separator45"
+						"background": #Color3
+						"foreground": #Color4
+						"border": sfield com.jformdesigner.model.FormObject NULL_VALUE
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "addBttVendas"
+						"text": "Adicionar"
+						"background": new java.awt.Color( 33, 37, 47, 255 )
+						"foreground": sfield java.awt.Color white
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "addBttVendasMouseClicked", true ) )
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "ClearBttVendas"
+						"text": "Limpar"
+						"background": new java.awt.Color( 33, 37, 47, 255 )
+						"foreground": sfield java.awt.Color white
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "ClearBttVendasMouseClicked", true ) )
+					} )
+					add( new FormComponent( "javax.swing.JSeparator" ) {
+						name: "separator44"
+						"background": #Color3
+						"foreground": #Color4
+						"border": sfield com.jformdesigner.model.FormObject NULL_VALUE
+					} )
+					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+						"$horizontalGroup": "par l {space :0:380:x}"
+						"$verticalGroup": "par l {space :0:136:x}"
+					} ) {
+						name: "panel14"
+						"background": new java.awt.Color( 33, 37, 47, 255 )
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "SaveBttVendas"
+						"text": "Salvar"
+						"foreground": sfield java.awt.Color white
+						"background": new java.awt.Color( 33, 37, 47, 255 )
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "SaveBttVendasMouseClicked", true ) )
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label11"
+						"text": "Preço total"
+						"foreground": sfield java.awt.Color white
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label39"
+						"text": "R$"
+						"foreground": sfield java.awt.Color white
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "venPrecoTotField"
+						"text": "0.00"
+						"background": new java.awt.Color( 33, 37, 47, 255 )
+						"foreground": sfield java.awt.Color white
+					} )
+				}, new FormLayoutConstraints( class java.lang.String ) {
+					"value": "card2"
 				} )
 			} )
 		}, new FormLayoutConstraints( null ) {
