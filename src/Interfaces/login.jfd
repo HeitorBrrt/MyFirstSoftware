@@ -1,0 +1,69 @@
+JFDML JFormDesigner: "8.0.0.0.194" Java: "17.0.5" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq l {comp label1:::p:80:p, par l {seq {par l {seq l {space :::p, par l:::p {seq l {comp saveBtt:::p:93:p, space s:::p, comp closeBtt::::93:x}, comp label62::l:::x, seq {space :6:6:p, comp showPass:::p::p}, comp userField::::204:x, comp senhaField::l::204:x}}, seq {space :p:37:p, comp logo:::p:112:p}}, space :0:60:x}, seq l {space u:::p, comp label61:::p::p, space ::213:x}}}}"
+			"$verticalGroup": "par l {seq l {comp label1:::p:400:p, space :0:0:x}, seq l {space :::p, comp logo:::p:42:p, space :p:18:p, comp label61:::p::p, space :::p, comp userField:::p::p, space s:::p, comp label62:::p::p, space :::p, comp senhaField:::p::p, space :::p, comp showPass:::p::p, space :p:49:p, par b {comp closeBtt::b:p::p, comp saveBtt::b:p::p}, space :::x}}"
+		} ) {
+			name: "mainPanel"
+			"background": new java.awt.Color( 33, 37, 47, 255 )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/icons/imglateral.png" )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "logo"
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/icons/logo.png" )
+				"background": new java.awt.Color( 33, 37, 47, 255 )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label61"
+				"text": "Usuário"
+				"foreground": sfield java.awt.Color white
+				"font": &Font0 new java.awt.Font( "Verdana", 0, 12 )
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "userField"
+				"background": new java.awt.Color( 33, 37, 47, 255 )
+				"foreground": sfield java.awt.Color white
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label62"
+				"text": "Senha"
+				"foreground": sfield java.awt.Color white
+				"font": #Font0
+			} )
+			add( new FormComponent( "javax.swing.JPasswordField" ) {
+				name: "senhaField"
+				"foreground": sfield java.awt.Color white
+				"background": new java.awt.Color( 33, 37, 47, 255 )
+			} )
+			add( new FormComponent( "javax.swing.JCheckBox" ) {
+				name: "showPass"
+				"text": "Mostrar senha"
+				"foreground": sfield java.awt.Color white
+				"background": new java.awt.Color( 33, 37, 47, 255 )
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "showPassMouseClicked", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "saveBtt"
+				"text": "Entrar"
+				"foreground": sfield java.awt.Color white
+				"background": &Color0 new java.awt.Color( 33, 37, 47, 255 )
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "saveBttMouseClicked", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "closeBtt"
+				"text": "Sair"
+				"foreground": sfield java.awt.Color white
+				"background": #Color0
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "closeBttMouseClicked", true ) )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 10, 0 )
+			"size": new java.awt.Dimension( 350, 340 )
+		} )
+	}
+}

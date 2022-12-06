@@ -4452,7 +4452,7 @@ public class dashboardGerente {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-    private JPanel mainPanel;
+    JPanel mainPanel;
     private JPanel panel3;
     private JPanel logoPanel;
     private JPanel infoPanel;
