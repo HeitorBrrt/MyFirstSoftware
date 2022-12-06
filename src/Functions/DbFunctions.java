@@ -688,7 +688,6 @@ public class DbFunctions {
 
     // Login
     public boolean logar(Connection conn, String user, String pass) {
-        getUsuarioTipo(conn, user);
         PreparedStatement statement;
         try {
             statement=conn.prepareStatement(String.format("SELECT usuario, senha FROM usuario WHERE usuario.usuario='%s' AND senha='%s'", user, pass));
@@ -710,24 +709,12 @@ public class DbFunctions {
             statement=conn.prepareStatement(String.format("SELECT usuariotipo FROM usuario WHERE usuario.usuario='%s'", user));
             ResultSet rs=statement.executeQuery();
             while (rs.next()) {
-                return rs.getString("usuariotipo");
+                String tipo = rs.getString("usuariotipo");
+                return String.valueOf(tipo);
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
         return null;
-    }
-
-    public static void main(String[] args) {
-        DbFunctions db = new DbFunctions();
-        Connection conn = db.connect_to_db("InfoTech", "postgres", "lbj23kb24mj45");
-        if(db.getUsuarioTipo(conn, "05624856199") == "Gerente") {
-            JOptionPane.showMessageDialog(null, "Gerente");
-        }
-        JOptionPane.showMessageDialog(null, db.getUsuarioTipo(conn, "05624856199"));
-        JOptionPane.showMessageDialog(null, db.getUsuarioTipo(conn, "19664074080"));
-        if(db.getUsuarioTipo(conn, "05624856199")=="Funcionário") {
-            JOptionPane.showMessageDialog(null, "Funcionário");
-        }
     }
 }

@@ -9,6 +9,9 @@ new FormModel {
 		} ) {
 			name: "mainPanelF"
 			"background": new java.awt.Color( 33, 37, 47, 255 )
+			auxiliary() {
+				"JavaCodeGenerator.variableModifiers": 1
+			}
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
 				"$horizontalGroup": "par l {seq {space :::p, par l {comp homeBtt::t:::x, comp efetuarVendaBtt::l:::x, comp cliBtt1::l:::x, seq l {comp infoPanel:::::p, space :0:73:x}}, space :::p}}"
 				"$verticalGroup": "par l {seq l {space :::p, comp infoPanel:::p::p, space :p:39:p, comp homeBtt:::p::p, space :::p, comp efetuarVendaBtt:::p::p, space :::p, comp cliBtt1:::p::p, space ::585:x}}"

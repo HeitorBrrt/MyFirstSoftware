@@ -21,8 +21,7 @@ public class login {
         db.createTables(conn);
         initComponents();
     }
-
-
+    
     private void showPassMouseClicked(MouseEvent e) {
         if(showPass.isSelected()) {
             senhaField.setEchoChar((char) 0);
@@ -35,7 +34,8 @@ public class login {
         DbFunctions db = new DbFunctions();
         Connection conn = db.connect_to_db("InfoTech", "postgres", "lbj23kb24mj45");
         if(db.logar(conn, userField.getText(), String.valueOf(senhaField.getPassword()))) {
-            if(db.getUsuarioTipo(conn, String.valueOf(userField.getText())) == "Gerente") {
+            String tipo = db.getUsuarioTipo(conn, userField.getText());
+            if(tipo.equals("Gerente")) {
                 ImageIcon imageIcon = new ImageIcon("src/icons/icon.png");
                 JFrame dashboardGer = new JFrame();
                 dashboardGer.pack();
@@ -45,7 +45,7 @@ public class login {
                 dashboardGer.setSize(1500, 800);
                 dashboardGer.setIconImage(imageIcon.getImage());
                 dashboardGer.setVisible(true);
-            } else if(db.getUsuarioTipo(conn, String.valueOf(userField.getText())) == "Funcionário") {
+            } else if(tipo.equals("Funcionário")) {
                 ImageIcon imageIcon = new ImageIcon("src/icons/icon.png");
                 JFrame dashboardFuncionario = new JFrame();
                 dashboardFuncionario.pack();

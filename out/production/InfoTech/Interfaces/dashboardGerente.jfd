@@ -12,6 +12,9 @@ new FormModel {
 			"background": new java.awt.Color( 33, 37, 47, 255 )
 			"border": sfield com.jformdesigner.model.FormObject NULL_VALUE
 			"foreground": new java.awt.Color( 0, 204, 204, 255 )
+			auxiliary() {
+				"JavaCodeGenerator.variableModifiers": 1
+			}
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
 				"$horizontalGroup": "par l {seq {space :::p, par l {seq {par t {comp logoPanel::l:::x, comp infoPanel::l:::x}, space :p:72:p}, comp efetuarVendaBtt::l:::x, comp homeBtt::l:::x, comp funcBtt1::l:::x, comp funcBtt2::l:::x, comp cliBtt1::l:::x, comp cliBtt2::l:::x, comp prodBtt1::l:::x, comp prodBtt2:::::x, comp verTabelasBtt::l:::x}}}"
 				"$verticalGroup": "par l {seq l {space :::p, comp logoPanel:::p::p, space :::p, comp infoPanel:::p::p, space :p:24:p, comp homeBtt:::p::p, space :::p, comp efetuarVendaBtt:::p::p, space :::p, comp funcBtt1:::p::p, space :::p, comp funcBtt2:::p::p, space :::p, comp cliBtt1:::p::p, space :::p, comp cliBtt2:::p::p, space :::p, comp prodBtt1:::p::p, space :::p, comp prodBtt2:::p::p, space :::p, comp verTabelasBtt:::p::p, space :::x}}"
