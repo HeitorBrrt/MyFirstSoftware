@@ -8,6 +8,7 @@ import javax.swing.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ForkJoinPool;
 
 public class DbFunctions {
     public Connection connect_to_db(String dbname, String user, String pass) {
@@ -717,10 +718,16 @@ public class DbFunctions {
         return null;
     }
 
-
-
     public static void main(String[] args) {
         DbFunctions db = new DbFunctions();
         Connection conn = db.connect_to_db("InfoTech", "postgres", "lbj23kb24mj45");
+        if(db.getUsuarioTipo(conn, "05624856199") == "Gerente") {
+            JOptionPane.showMessageDialog(null, "Gerente");
+        }
+        JOptionPane.showMessageDialog(null, db.getUsuarioTipo(conn, "05624856199"));
+        JOptionPane.showMessageDialog(null, db.getUsuarioTipo(conn, "19664074080"));
+        if(db.getUsuarioTipo(conn, "05624856199")=="Funcionário") {
+            JOptionPane.showMessageDialog(null, "Funcionário");
+        }
     }
 }

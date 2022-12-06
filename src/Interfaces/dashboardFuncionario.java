@@ -286,7 +286,6 @@ public class dashboardFuncionario {
         cliBtt1.setBackground(new Color(37, 98, 156));
     }
 
-
     private String precTot(Integer idproduto, String quantidade) {
         DbFunctions db = new DbFunctions();
         Connection conn = db.connect_to_db("InfoTech", "postgres", "lbj23kb24mj45");
@@ -412,126 +411,6 @@ public class dashboardFuncionario {
     }
 
 
-    /*private void corAleatoria(){
-        int randomNum = ThreadLocalRandom.current().nextInt(0, 20);
-        Color color;
-        switch (randomNum) {
-            case 0 -> {
-                color = new Color(34, 162, 117);
-                homePanelF.setBackground(color);
-                nomeGerenteLbl.setForeground(homePanelF.getBackground());
-                manIconPanel.setForeground(homePanelF.getBackground());
-            }
-            case 1 -> {
-                color = new Color(255, 195, 243);
-                homePanelF.setBackground(color);
-                nomeGerenteLbl.setForeground(homePanelF.getBackground());
-                manIconPanel.setForeground(homePanelF.getBackground());
-            }
-            case 3 -> {
-                color = new Color(39, 127, 187);
-                homePanelF.setBackground(color);
-                nomeGerenteLbl.setForeground(homePanelF.getBackground());
-                manIconPanel.setForeground(homePanelF.getBackground());
-            }
-            case 4 -> {
-                color = new Color(204, 255, 204);
-                homePanelF.setBackground(color);
-                nomeGerenteLbl.setForeground(homePanelF.getBackground());
-                manIconPanel.setForeground(homePanelF.getBackground());
-            }
-            case 5 -> {
-                color = new Color(64, 245, 248);
-                homePanelF.setBackground(color);
-                nomeGerenteLbl.setForeground(homePanelF.getBackground());
-                manIconPanel.setForeground(homePanelF.getBackground());
-            }
-            case 6 -> {
-                color = new Color(153, 153, 255);
-                homePanelF.setBackground(color);
-                nomeGerenteLbl.setForeground(homePanelF.getBackground());
-                manIconPanel.setForeground(homePanelF.getBackground());
-            }
-            case 7 -> {
-                color = new Color(178, 221, 40);
-                homePanelF.setBackground(color);
-                nomeGerenteLbl.setForeground(homePanelF.getBackground());
-                manIconPanel.setForeground(homePanelF.getBackground());
-            }
-            case 8 -> {
-                color = new Color(211, 110, 112);
-                homePanelF.setBackground(color);
-                nomeGerenteLbl.setForeground(homePanelF.getBackground());
-                manIconPanel.setForeground(homePanelF.getBackground());
-            }
-            case 9 -> {
-                color = new Color(230, 214, 144);
-                homePanelF.setBackground(color);
-                nomeGerenteLbl.setForeground(homePanelF.getBackground());
-                manIconPanel.setForeground(homePanelF.getBackground());
-            }
-            case 10 -> {
-                color = new Color(137, 172, 118);
-                homePanelF.setBackground(color);
-                nomeGerenteLbl.setForeground(homePanelF.getBackground());
-                manIconPanel.setForeground(homePanelF.getBackground());
-            }
-            case 11 -> {
-                color = new Color(152, 238, 245);
-                homePanelF.setBackground(color);
-                nomeGerenteLbl.setForeground(homePanelF.getBackground());
-                manIconPanel.setForeground(homePanelF.getBackground());
-            }
-            case 12 -> {
-                color = new Color(102, 185, 181);
-                homePanelF.setBackground(color);
-                nomeGerenteLbl.setForeground(homePanelF.getBackground());
-                manIconPanel.setForeground(homePanelF.getBackground());
-            }
-            case 13 -> {
-                color = new Color(255, 254, 145);
-                homePanelF.setBackground(color);
-                nomeGerenteLbl.setForeground(homePanelF.getBackground());
-                manIconPanel.setForeground(homePanelF.getBackground());
-            }
-            case 14 -> {
-                color = new Color(255, 153, 153);
-                homePanelF.setBackground(color);
-                nomeGerenteLbl.setForeground(homePanelF.getBackground());
-                manIconPanel.setForeground(homePanelF.getBackground());
-            }
-            case 15 -> {
-                color = new Color(245, 110, 97);
-                homePanelF.setBackground(color);
-                nomeGerenteLbl.setForeground(homePanelF.getBackground());
-                manIconPanel.setForeground(homePanelF.getBackground());
-            }
-            case 16 -> {
-                color = new Color(245, 162, 100);
-                homePanelF.setBackground(color);
-                nomeGerenteLbl.setForeground(homePanelF.getBackground());
-                manIconPanel.setForeground(homePanelF.getBackground());
-            }
-            case 17 -> {
-                color = new Color(219, 245, 95);
-                homePanelF.setBackground(color);
-                nomeGerenteLbl.setForeground(homePanelF.getBackground());
-                manIconPanel.setForeground(homePanelF.getBackground());
-            }
-            case 18 -> {
-                color = new Color(140, 245, 93);
-                homePanelF.setBackground(color);
-                nomeGerenteLbl.setForeground(homePanelF.getBackground());
-                manIconPanel.setForeground(homePanelF.getBackground());
-            }
-            case 19 -> {
-                color = new Color(92, 245, 170);
-                homePanelF.setBackground(color);
-                nomeGerenteLbl.setForeground(homePanelF.getBackground());
-                manIconPanel.setForeground(homePanelF.getBackground());
-            }
-        }
-    }*/
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
         mainPanelF = new JPanel();
@@ -1378,7 +1257,7 @@ public class dashboardFuncionario {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-    private JPanel mainPanelF;
+    public JPanel mainPanelF;
     private JPanel sidePanel;
     private JPanel infoPanel;
     private JLabel nomeGerenteLbl;

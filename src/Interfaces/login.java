@@ -35,7 +35,7 @@ public class login {
         DbFunctions db = new DbFunctions();
         Connection conn = db.connect_to_db("InfoTech", "postgres", "lbj23kb24mj45");
         if(db.logar(conn, userField.getText(), String.valueOf(senhaField.getPassword()))) {
-            if(db.getUsuarioTipo(conn, userField.getText()) == "Gerente") {
+            if(db.getUsuarioTipo(conn, String.valueOf(userField.getText())) == "Gerente") {
                 ImageIcon imageIcon = new ImageIcon("src/icons/icon.png");
                 JFrame dashboardGer = new JFrame();
                 dashboardGer.pack();
@@ -45,7 +45,7 @@ public class login {
                 dashboardGer.setSize(1500, 800);
                 dashboardGer.setIconImage(imageIcon.getImage());
                 dashboardGer.setVisible(true);
-            } else  {
+            } else if(db.getUsuarioTipo(conn, String.valueOf(userField.getText())) == "Funcionário") {
                 ImageIcon imageIcon = new ImageIcon("src/icons/icon.png");
                 JFrame dashboardFuncionario = new JFrame();
                 dashboardFuncionario.pack();
@@ -55,6 +55,9 @@ public class login {
                 dashboardFuncionario.setSize(1500, 800);
                 dashboardFuncionario.setIconImage(imageIcon.getImage());
                 dashboardFuncionario.setVisible(true);
+            }
+            else {
+                JOptionPane.showMessageDialog(null, "erro");
             }
         }
         else {

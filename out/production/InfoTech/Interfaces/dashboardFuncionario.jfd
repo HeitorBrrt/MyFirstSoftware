@@ -287,6 +287,7 @@ new FormModel {
 					"$verticalGroup": "par l {seq t {space :0:0:x, par l {comp sidePanel2:::p::p, seq l {comp panel10:::p::p, space :6:6:p, comp label13:::p:84:p, space :6:6:p, comp label8:::p::p, space :6:6:p, comp cadClienteNomeField:::p::p, space :6:6:p, comp separator1:::p::p, space :12:12:p, comp label9:::p::p, space :6:6:p, comp cadClienteTelefoneField:::p::p, space :6:6:p, comp separator2:::p::p, space :12:12:p, comp label10:::p::p, space :6:6:p, comp cadClienteEnderecoField:::p::p, space :6:6:p, comp separator6:::p::p, space :18:18:p, comp label12:::p::p, space :6:6:p, comp cadClienteUserField:::p::p, space :6:6:p, comp separator5:::p::p, space :18:18:p, comp saveBtt:::p::p, space :6:6:p, comp clearBtt:::p::p}}}}"
 				} ) {
 					name: "cadClientePanel"
+					"background": new java.awt.Color( 33, 37, 47, 255 )
 					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
 						"$horizontalGroup": "par l {space :0:80:x}"
 						"$verticalGroup": "par l {space :0:900:x}"
@@ -393,7 +394,7 @@ new FormModel {
 						"text": "Cadastrar cliente"
 						"font": #Font1
 						"foreground": new java.awt.Color( 255, 255, 255, 255 )
-						"background": sfield java.awt.Color white
+						"background": new java.awt.Color( 33, 37, 47, 255 )
 					} )
 					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
 						"$horizontalGroup": "par l {space :0:380:x}"
