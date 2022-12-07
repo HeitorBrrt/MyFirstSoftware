@@ -23,6 +23,10 @@ public class Produto {
 	}
 
     public Produto() {}
+	public Produto(String idProduto, String nome){
+		setIdProduto(idProduto);
+		setProdutoNome(nome);
+	}
 
 	public void setIdProduto(String idProduto){
 		this.idProduto=idProduto;

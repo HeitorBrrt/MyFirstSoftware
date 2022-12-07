@@ -5,6 +5,7 @@ import atores.Usuario;
 import estoque.Produto;
 import pedido.Venda;
 import javax.swing.*;
+import java.awt.color.ProfileDataException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -569,8 +570,8 @@ public class DbFunctions {
             statement=conn.prepareStatement("SELECT idcliente FROM cliente");
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
-                String idUser = rs.getString("idcliente");
-                idClienteList.add(idUser);
+                String idcliente = rs.getString("idcliente");
+                idClienteList.add(idcliente);
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
@@ -598,6 +599,44 @@ public class DbFunctions {
         }
         return clienteList;
     }
+
+    public List<Cliente> getNomeIdCliente(Connection conn) {
+        PreparedStatement statement;
+        List<Cliente> clienteList = new ArrayList<>();
+        try {
+            statement= conn.prepareStatement("SELECT idcliente, nome FROM cliente");
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                Cliente cliente = new Cliente(null, null);
+                cliente.setIdCliente(rs.getString("idcliente"));
+                cliente.setNome(rs.getString("nome"));
+                clienteList.add(cliente);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return clienteList;
+    }
+
+    public List<Produto> getNomeIdProduto(Connection conn) {
+        PreparedStatement statement;
+        List<Produto> produtosList = new ArrayList<>();
+        try {
+            statement= conn.prepareStatement("SELECT idProduto, nome FROM produto");
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                Produto produto = new Produto(null, null);
+                produto.setIdProduto(rs.getString("idproduto"));
+                produto.setProdutoNome(rs.getString("nome"));
+                produtosList.add(produto);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return produtosList;
+    }
+
+
     public boolean verificarCliente(String idcliente, List idClienteList) {
         DbFunctions db = new DbFunctions();
         Connection conn = db.connect_to_db("InfoTech", "postgres", "lbj23kb24mj45");

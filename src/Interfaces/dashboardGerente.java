@@ -1322,7 +1322,7 @@ public class dashboardGerente {
                     infoPanel.setBackground(new Color(0x21252f));
 
                     //---- nomeGerenteLbl ----
-                    nomeGerenteLbl.setText("NomeGerente");
+                    nomeGerenteLbl.setText("Gerente");
                     nomeGerenteLbl.setForeground(Color.white);
                     nomeGerenteLbl.setBackground(new Color(0x21252f));
 
@@ -1358,8 +1358,7 @@ public class dashboardGerente {
                                 .addContainerGap()
                                 .addComponent(manIconPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(nomeGerenteLbl, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addContainerGap())
+                                .addComponent(nomeGerenteLbl, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     );
                     infoPanelLayout.setVerticalGroup(
                         infoPanelLayout.createParallelGroup()
@@ -1846,9 +1845,11 @@ public class dashboardGerente {
                             .addContainerGap()
                             .addGroup(panel3Layout.createParallelGroup()
                                 .addGroup(panel3Layout.createSequentialGroup()
-                                    .addGroup(panel3Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                                        .addComponent(logoPanel, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(infoPanel, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(panel3Layout.createParallelGroup()
+                                        .addComponent(logoPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(panel3Layout.createSequentialGroup()
+                                            .addComponent(infoPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                            .addGap(0, 0, Short.MAX_VALUE)))
                                     .addGap(72, 72, 72))
                                 .addComponent(efetuarVendaBtt, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(homeBtt, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1920,13 +1921,15 @@ public class dashboardGerente {
                     homePanel.setLayout(homePanelLayout);
                     homePanelLayout.setHorizontalGroup(
                         homePanelLayout.createParallelGroup()
-                            .addComponent(label14, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(homePanelLayout.createSequentialGroup()
-                                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(homePanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(greetLbl, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(homeDateLbl, GroupLayout.PREFERRED_SIZE, 500, GroupLayout.PREFERRED_SIZE))
+                                .addComponent(label14, GroupLayout.DEFAULT_SIZE, 1305, Short.MAX_VALUE)
                                 .addContainerGap())
+                            .addGroup(GroupLayout.Alignment.TRAILING, homePanelLayout.createSequentialGroup()
+                                .addGap(0, 684, Short.MAX_VALUE)
+                                .addGroup(homePanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                                    .addComponent(homeDateLbl, GroupLayout.PREFERRED_SIZE, 500, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(greetLbl, GroupLayout.PREFERRED_SIZE, 500, GroupLayout.PREFERRED_SIZE))
+                                .addGap(127, 127, 127))
                     );
                     homePanelLayout.setVerticalGroup(
                         homePanelLayout.createParallelGroup()
@@ -2141,7 +2144,7 @@ public class dashboardGerente {
                                     .addGroup(efetuarVendaPanelLayout.createSequentialGroup()
                                         .addGap(26, 26, 26)
                                         .addComponent(panel14, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 300, Short.MAX_VALUE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 340, Short.MAX_VALUE)
                                 .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 430, GroupLayout.PREFERRED_SIZE))
                     );
                     efetuarVendaPanelLayout.setVerticalGroup(
@@ -2363,7 +2366,7 @@ public class dashboardGerente {
                                             .addComponent(label15, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
                                             .addComponent(separator7, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
                                             .addComponent(cadFuncCleaBtt, GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE))))
-                                .addContainerGap(786, Short.MAX_VALUE))
+                                .addContainerGap(825, Short.MAX_VALUE))
                     );
                     cadFuncionarioPanelLayout.setVerticalGroup(
                         cadFuncionarioPanelLayout.createParallelGroup()
@@ -2703,7 +2706,7 @@ public class dashboardGerente {
                                             .addGroup(ediFuncionarioPanelLayout.createSequentialGroup()
                                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(searchFuncPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))))
-                                .addGap(0, 552, Short.MAX_VALUE))
+                                .addGap(0, 588, Short.MAX_VALUE))
                     );
                     ediFuncionarioPanelLayout.setVerticalGroup(
                         ediFuncionarioPanelLayout.createParallelGroup()
@@ -2936,7 +2939,7 @@ public class dashboardGerente {
                                         .addComponent(saveBtt, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(clearBtt, GroupLayout.PREFERRED_SIZE, 380, GroupLayout.PREFERRED_SIZE)
                                         .addComponent(label12)))
-                                .addGap(0, 806, Short.MAX_VALUE))
+                                .addGap(0, 845, Short.MAX_VALUE))
                     );
                     cadClientePanelLayout.setVerticalGroup(
                         cadClientePanelLayout.createParallelGroup()
@@ -3234,7 +3237,7 @@ public class dashboardGerente {
                                                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                                     .addComponent(ediClienteClearBtt, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                                 .addComponent(separator31, GroupLayout.PREFERRED_SIZE, 380, GroupLayout.PREFERRED_SIZE)))))
-                                .addGap(0, 751, Short.MAX_VALUE))
+                                .addGap(0, 790, Short.MAX_VALUE))
                     );
                     ediClientePanelLayout.setVerticalGroup(
                         ediClientePanelLayout.createParallelGroup()
@@ -3512,7 +3515,7 @@ public class dashboardGerente {
                                         .addComponent(label64)
                                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(cadProdPrecoVenda, GroupLayout.PREFERRED_SIZE, 360, GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 806, Short.MAX_VALUE))
+                                .addGap(0, 845, Short.MAX_VALUE))
                     );
                     cadProdutoPanelLayout.setVerticalGroup(
                         cadProdutoPanelLayout.createParallelGroup()
@@ -3856,7 +3859,7 @@ public class dashboardGerente {
                                         .addComponent(label68)
                                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(ediProdPrecoVenda, GroupLayout.PREFERRED_SIZE, 360, GroupLayout.PREFERRED_SIZE)))
-                                .addContainerGap(566, Short.MAX_VALUE))
+                                .addContainerGap(605, Short.MAX_VALUE))
                     );
                     ediProdutoPanelLayout.setVerticalGroup(
                         ediProdutoPanelLayout.createParallelGroup()
@@ -4220,7 +4223,7 @@ public class dashboardGerente {
                                 tabelaUsuariosPanelLayout.createParallelGroup()
                                     .addGroup(tabelaUsuariosPanelLayout.createSequentialGroup()
                                         .addComponent(usuariosScroll, GroupLayout.PREFERRED_SIZE, 1188, GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 78, Short.MAX_VALUE))
+                                        .addGap(0, 117, Short.MAX_VALUE))
                             );
                             tabelaUsuariosPanelLayout.setVerticalGroup(
                                 tabelaUsuariosPanelLayout.createParallelGroup()
@@ -4277,7 +4280,7 @@ public class dashboardGerente {
                             tabelaClientesPanel.setLayout(tabelaClientesPanelLayout);
                             tabelaClientesPanelLayout.setHorizontalGroup(
                                 tabelaClientesPanelLayout.createParallelGroup()
-                                    .addComponent(clientesScroll, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 1266, Short.MAX_VALUE)
+                                    .addComponent(clientesScroll, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 1305, Short.MAX_VALUE)
                             );
                             tabelaClientesPanelLayout.setVerticalGroup(
                                 tabelaClientesPanelLayout.createParallelGroup()
@@ -4344,7 +4347,7 @@ public class dashboardGerente {
                                 tabelaProdutosPanelLayout.createParallelGroup()
                                     .addGroup(tabelaProdutosPanelLayout.createSequentialGroup()
                                         .addComponent(produtosScroll, GroupLayout.PREFERRED_SIZE, 1188, GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 78, Short.MAX_VALUE))
+                                        .addGap(0, 117, Short.MAX_VALUE))
                             );
                             tabelaProdutosPanelLayout.setVerticalGroup(
                                 tabelaProdutosPanelLayout.createParallelGroup()
@@ -4403,7 +4406,7 @@ public class dashboardGerente {
                             tabelaVendas.setLayout(tabelaVendasLayout);
                             tabelaVendasLayout.setHorizontalGroup(
                                 tabelaVendasLayout.createParallelGroup()
-                                    .addComponent(vendasScroll, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 1266, Short.MAX_VALUE)
+                                    .addComponent(vendasScroll, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 1305, Short.MAX_VALUE)
                             );
                             tabelaVendasLayout.setVerticalGroup(
                                 tabelaVendasLayout.createParallelGroup()

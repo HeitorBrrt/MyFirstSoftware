@@ -21,7 +21,7 @@ public class login {
         db.createTables(conn);
         initComponents();
     }
-    
+
     private void showPassMouseClicked(MouseEvent e) {
         if(showPass.isSelected()) {
             senhaField.setEchoChar((char) 0);
@@ -216,19 +216,6 @@ public class login {
     private JButton closeBtt;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 
-    public String getNomeUser(Connection conn, String user) {
-        PreparedStatement statement;
-        try {
-            statement=conn.prepareStatement(String.format("SELECT nome FROM usuario WHERE usuario.usuario='%s'", user));
-            ResultSet rs=statement.executeQuery();
-            while (rs.next()) {
-                return rs.getString("usuariotipo");
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-        }
-        return null;
-    }
 
     public static void main(String[] args) {
         JFrame telaLogin = new JFrame("Tela de Login");

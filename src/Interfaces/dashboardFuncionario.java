@@ -2,12 +2,15 @@ package Interfaces;
 
 import java.awt.event.*;
 import javax.swing.border.*;
+import javax.swing.table.*;
 import Functions.DbFunctions;
 import atores.Cliente;
+import estoque.Produto;
 import pedido.Venda;
 
 import java.awt.*;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.util.GregorianCalendar;
 import java.util.concurrent.ThreadLocalRandom;
 import javax.swing.*;
@@ -18,13 +21,12 @@ import javax.swing.GroupLayout;
  */
 public class dashboardFuncionario {
     public dashboardFuncionario() {
-        initComponents();
         DbFunctions db = new DbFunctions();
         Connection conn = db.connect_to_db("InfoTech", "postgres", "lbj23kb24mj45");
         db.createTables(conn);
+        initComponents();
         corAleatoria();
         homeDateLbl.setText(DataPorExtenso());
-
     }
 
     private String DataPorExtenso(){
@@ -55,115 +57,96 @@ public class dashboardFuncionario {
             case 0 -> {
                 color = new Color(34, 162, 117);
                 homePanelF.setBackground(color);
-                nomeGerenteLbl.setForeground(homePanelF.getBackground());
                 manIconPanel.setForeground(homePanelF.getBackground());
             }
             case 1 -> {
                 color = new Color(255, 195, 243);
                 homePanelF.setBackground(color);
-                nomeGerenteLbl.setForeground(homePanelF.getBackground());
                 manIconPanel.setForeground(homePanelF.getBackground());
             }
             case 3 -> {
                 color = new Color(39, 127, 187);
                 homePanelF.setBackground(color);
-                nomeGerenteLbl.setForeground(homePanelF.getBackground());
                 manIconPanel.setForeground(homePanelF.getBackground());
             }
             case 4 -> {
                 color = new Color(204, 255, 204);
                 homePanelF.setBackground(color);
-                nomeGerenteLbl.setForeground(homePanelF.getBackground());
                 manIconPanel.setForeground(homePanelF.getBackground());
             }
             case 5 -> {
                 color = new Color(64, 245, 248);
                 homePanelF.setBackground(color);
-                nomeGerenteLbl.setForeground(homePanelF.getBackground());
                 manIconPanel.setForeground(homePanelF.getBackground());
             }
             case 6 -> {
                 color = new Color(153, 153, 255);
                 homePanelF.setBackground(color);
-                nomeGerenteLbl.setForeground(homePanelF.getBackground());
                 manIconPanel.setForeground(homePanelF.getBackground());
             }
             case 7 -> {
                 color = new Color(178, 221, 40);
                 homePanelF.setBackground(color);
-                nomeGerenteLbl.setForeground(homePanelF.getBackground());
                 manIconPanel.setForeground(homePanelF.getBackground());
             }
             case 8 -> {
                 color = new Color(211, 110, 112);
                 homePanelF.setBackground(color);
-                nomeGerenteLbl.setForeground(homePanelF.getBackground());
                 manIconPanel.setForeground(homePanelF.getBackground());
             }
             case 9 -> {
                 color = new Color(230, 214, 144);
                 homePanelF.setBackground(color);
-                nomeGerenteLbl.setForeground(homePanelF.getBackground());
                 manIconPanel.setForeground(homePanelF.getBackground());
             }
             case 10 -> {
                 color = new Color(137, 172, 118);
                 homePanelF.setBackground(color);
-                nomeGerenteLbl.setForeground(homePanelF.getBackground());
                 manIconPanel.setForeground(homePanelF.getBackground());
             }
             case 11 -> {
                 color = new Color(152, 238, 245);
                 homePanelF.setBackground(color);
-                nomeGerenteLbl.setForeground(homePanelF.getBackground());
                 manIconPanel.setForeground(homePanelF.getBackground());
             }
             case 12 -> {
                 color = new Color(102, 185, 181);
                 homePanelF.setBackground(color);
-                nomeGerenteLbl.setForeground(homePanelF.getBackground());
                 manIconPanel.setForeground(homePanelF.getBackground());
             }
             case 13 -> {
                 color = new Color(255, 254, 145);
                 homePanelF.setBackground(color);
-                nomeGerenteLbl.setForeground(homePanelF.getBackground());
                 manIconPanel.setForeground(homePanelF.getBackground());
             }
             case 14 -> {
                 color = new Color(255, 153, 153);
                 homePanelF.setBackground(color);
-                nomeGerenteLbl.setForeground(homePanelF.getBackground());
                 manIconPanel.setForeground(homePanelF.getBackground());
             }
             case 15 -> {
                 color = new Color(245, 110, 97);
                 homePanelF.setBackground(color);
-                nomeGerenteLbl.setForeground(homePanelF.getBackground());
                 manIconPanel.setForeground(homePanelF.getBackground());
             }
             case 16 -> {
                 color = new Color(245, 162, 100);
                 homePanelF.setBackground(color);
-                nomeGerenteLbl.setForeground(homePanelF.getBackground());
                 manIconPanel.setForeground(homePanelF.getBackground());
             }
             case 17 -> {
                 color = new Color(219, 245, 95);
                 homePanelF.setBackground(color);
-                nomeGerenteLbl.setForeground(homePanelF.getBackground());
                 manIconPanel.setForeground(homePanelF.getBackground());
             }
             case 18 -> {
                 color = new Color(140, 245, 93);
                 homePanelF.setBackground(color);
-                nomeGerenteLbl.setForeground(homePanelF.getBackground());
                 manIconPanel.setForeground(homePanelF.getBackground());
             }
             case 19 -> {
                 color = new Color(92, 245, 170);
                 homePanelF.setBackground(color);
-                nomeGerenteLbl.setForeground(homePanelF.getBackground());
                 manIconPanel.setForeground(homePanelF.getBackground());
             }
         }
@@ -224,20 +207,43 @@ public class dashboardFuncionario {
         homePanelF.setVisible(true);
         cadClientePanel.setVisible(false);
         efetuarVendaPanel.setVisible(false);
+        listaClientesPanel.setVisible(false);
+        listaProdutosPanel.setVisible(false);
     }
 
     private void efetuarVendaBttMouseClicked(MouseEvent e) {
         homePanelF.setVisible(false);
         cadClientePanel.setVisible(false);
         efetuarVendaPanel.setVisible(true);
+        listaClientesPanel.setVisible(false);
+        listaProdutosPanel.setVisible(false);
     }
 
     private void cliBtt1MouseClicked(MouseEvent e) {
         homePanelF.setVisible(false);
         cadClientePanel.setVisible(true);
         efetuarVendaPanel.setVisible(false);
+        listaClientesPanel.setVisible(false);
+        listaProdutosPanel.setVisible(false);
     }
 
+    private void listaClientesBttMouseClicked(MouseEvent e) {
+        homePanelF.setVisible(false);
+        cadClientePanel.setVisible(false);
+        efetuarVendaPanel.setVisible(false);
+        listaClientesPanel.setVisible(true);
+        listaProdutosPanel.setVisible(false);
+        fillFclienteTable();
+    }
+
+    private void listaProdutosBttMouseClicked(MouseEvent e) {
+        homePanelF.setVisible(false);
+        cadClientePanel.setVisible(false);
+        efetuarVendaPanel.setVisible(false);
+        listaClientesPanel.setVisible(false);
+        listaProdutosPanel.setVisible(true);
+        fillFprodutoTable();
+    }
 
     // Mouse entered
     private void homeBttMouseEntered(MouseEvent e) {
@@ -250,6 +256,12 @@ public class dashboardFuncionario {
         cliBtt1.setBackground(new Color(37, 98, 156));
     }
 
+    private void listaClientesBttMouseEntered(MouseEvent e) {
+        listaClientesBtt.setBackground(new Color(37, 98, 156));
+    }
+    private void listaProdutosBttMouseEntered(MouseEvent e) {
+        listaProdutosBtt.setBackground(new Color(37, 98, 156));
+    }
 
     // Mouse exited
     private void homeBttMouseExited(MouseEvent e) {
@@ -262,6 +274,12 @@ public class dashboardFuncionario {
         cliBtt1.setBackground(new Color(33, 37, 47));
     }
 
+    private void listaClientesBttMouseExited(MouseEvent e) {
+        listaClientesBtt.setBackground(new Color(33, 37, 47));
+    }
+    private void listaProdutosBttMouseExited(MouseEvent e) {
+        listaProdutosBtt.setBackground(new Color(33, 37, 47));
+    }
 
     // Mouse pressed
     private void homeBttMousePressed(MouseEvent e) {
@@ -274,6 +292,12 @@ public class dashboardFuncionario {
         cliBtt1.setBackground(new Color(50, 129, 244));
     }
 
+    private void listaClientesBttMousePressed(MouseEvent e) {
+        listaClientesBtt.setBackground(new Color(50, 129, 244));
+    }
+    private void listaProdutosBttMousePressed(MouseEvent e) {
+        listaProdutosBtt.setBackground(new Color(50, 129, 244));
+    }
 
     // Mouse released
     private void homeBttMouseReleased(MouseEvent e) {
@@ -285,6 +309,12 @@ public class dashboardFuncionario {
     private void cliBtt1MouseReleased(MouseEvent e) {
         cliBtt1.setBackground(new Color(37, 98, 156));
     }
+    private void listaClientesBttMouseReleased(MouseEvent e) {
+        listaClientesBtt.setBackground(new Color(37, 98, 156));
+    }
+    private void listaProdutosBttMouseReleased(MouseEvent e) {
+        listaProdutosBtt.setBackground(new Color(37, 98, 156));
+    }
 
     private String precTot(Integer idproduto, String quantidade) {
         DbFunctions db = new DbFunctions();
@@ -295,6 +325,7 @@ public class dashboardFuncionario {
 
         return String.valueOf(Double.valueOf(Double.parseDouble(precAtual)+Double.parseDouble(precTotal)));
     }
+
 
     // Cadastro cliente
     private void saveBttMouseClicked(MouseEvent e) {
@@ -335,7 +366,10 @@ public class dashboardFuncionario {
         }
     }
     private void clearBttMouseClicked(MouseEvent e) {
-        // TODO add your code here
+        cadClienteNomeField.setText("");
+        cadClienteTelefoneField.setText("");
+        cadClienteEnderecoField.setText("");
+        cadClienteUserField.setText("");
     }
 
     // Efetuar venda
@@ -410,13 +444,58 @@ public class dashboardFuncionario {
 
     }
 
+    // public void fillTableClientes(){
+    //        DbFunctions db = new DbFunctions();
+    //        Connection conn = db.connect_to_db("InfoTech", "postgres", "lbj23kb24mj45");
+    //        DefaultTableModel model = (DefaultTableModel) clientesTable.getModel();
+    //        clientesTable.setRowSorter(new TableRowSorter<TableModel>(model));
+    //        model.setNumRows(0);
+    //
+    //        for(Cliente cliente: db.read_dataClientes(conn)){
+    //            model.addRow(new Object[]{
+    //                    cliente.getIdCliente(),
+    //                    cliente.getNome(),
+    //                    cliente.getTelefone(),
+    //                    cliente.getEndereco(),
+    //                    cliente.getUserUsuario(),
+    //                    cliente.getDataCadastro()
+    //            });
+    //        }
+    //    }
+
+    public void fillFclienteTable() {
+        DbFunctions db = new DbFunctions();
+        Connection conn = db.connect_to_db("InfoTech", "postgres", "lbj23kb24mj45");
+        DefaultTableModel model = (DefaultTableModel) FclientesTable.getModel();
+        FclientesTable.setRowSorter(new TableRowSorter<TableModel>(model));
+        model.setNumRows(0);
+        for(Cliente cliente: db.getNomeIdCliente(conn)) {
+            model.addRow(new Object[]{
+                    cliente.getIdCliente(),
+                    cliente.getNome()
+            });
+        }
+    }
+
+    public void fillFprodutoTable() {
+        DbFunctions db = new DbFunctions();
+        Connection conn = db.connect_to_db("InfoTech", "postgres", "lbj23kb24mj45");
+        DefaultTableModel model = (DefaultTableModel) FprodutosTable.getModel();
+        FprodutosTable.setRowSorter(new TableRowSorter<TableModel>(model));
+        model.setNumRows(0);
+        for(Produto produto: db.getNomeIdProduto(conn)) {
+            model.addRow(new Object[]{
+                    produto.getIdProduto(),
+                    produto.getProdutoNome()
+            });
+        }
+    }
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
         mainPanelF = new JPanel();
         sidePanel = new JPanel();
         infoPanel = new JPanel();
-        nomeGerenteLbl = new JLabel();
         manIconPanel = new JPanel();
         managerIcon = new JLabel();
         homeBtt = new JPanel();
@@ -425,6 +504,11 @@ public class dashboardFuncionario {
         label57 = new JLabel();
         cliBtt1 = new JPanel();
         label4 = new JLabel();
+        label2 = new JLabel();
+        listaClientesBtt = new JPanel();
+        label58 = new JLabel();
+        listaProdutosBtt = new JPanel();
+        label59 = new JLabel();
         centralPanel = new JPanel();
         homePanelF = new JPanel();
         label14 = new JLabel();
@@ -472,6 +556,12 @@ public class dashboardFuncionario {
         clearBtt = new JButton();
         label13 = new JLabel();
         panel10 = new JPanel();
+        listaClientesPanel = new JPanel();
+        scrollPane2 = new JScrollPane();
+        FclientesTable = new JTable();
+        listaProdutosPanel = new JPanel();
+        scrollPane3 = new JScrollPane();
+        FprodutosTable = new JTable();
 
         //======== mainPanelF ========
         {
@@ -485,17 +575,12 @@ public class dashboardFuncionario {
                 {
                     infoPanel.setBackground(new Color(0x21252f));
 
-                    //---- nomeGerenteLbl ----
-                    nomeGerenteLbl.setText("NomeFuncio");
-                    nomeGerenteLbl.setForeground(Color.white);
-                    nomeGerenteLbl.setBackground(new Color(0x21252f));
-
                     //======== manIconPanel ========
                     {
                         manIconPanel.setBackground(new Color(0x21252f));
 
                         //---- managerIcon ----
-                        managerIcon.setIcon(new ImageIcon(getClass().getResource("/icons/managerIcon.png")));
+                        managerIcon.setIcon(new ImageIcon(getClass().getResource("/icons/staffIcon.png")));
                         managerIcon.setBackground(new Color(0x0021252b, true));
 
                         GroupLayout manIconPanelLayout = new GroupLayout(manIconPanel);
@@ -521,17 +606,13 @@ public class dashboardFuncionario {
                             .addGroup(infoPanelLayout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(manIconPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(nomeGerenteLbl, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addContainerGap())
+                                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     );
                     infoPanelLayout.setVerticalGroup(
                         infoPanelLayout.createParallelGroup()
                             .addGroup(infoPanelLayout.createSequentialGroup()
                                 .addContainerGap()
-                                .addGroup(infoPanelLayout.createParallelGroup()
-                                    .addComponent(manIconPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(nomeGerenteLbl))
+                                .addComponent(manIconPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                 .addGap(22, 22, 22))
                     );
                 }
@@ -576,8 +657,8 @@ public class dashboardFuncionario {
                         homeBttLayout.createParallelGroup()
                             .addGroup(homeBttLayout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(label1)
-                                .addContainerGap(193, Short.MAX_VALUE))
+                                .addComponent(label1, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     );
                     homeBttLayout.setVerticalGroup(
                         homeBttLayout.createParallelGroup()
@@ -627,12 +708,12 @@ public class dashboardFuncionario {
                         efetuarVendaBttLayout.createParallelGroup()
                             .addGroup(efetuarVendaBttLayout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(label57)
-                                .addContainerGap(134, Short.MAX_VALUE))
+                                .addComponent(label57, GroupLayout.PREFERRED_SIZE, 113, GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     );
                     efetuarVendaBttLayout.setVerticalGroup(
                         efetuarVendaBttLayout.createParallelGroup()
-                            .addGroup(efetuarVendaBttLayout.createSequentialGroup()
+                            .addGroup(GroupLayout.Alignment.TRAILING, efetuarVendaBttLayout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(label57, GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
                                 .addContainerGap())
@@ -679,14 +760,120 @@ public class dashboardFuncionario {
                         cliBtt1Layout.createParallelGroup()
                             .addGroup(cliBtt1Layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(label4)
-                                .addContainerGap(113, Short.MAX_VALUE))
+                                .addComponent(label4, GroupLayout.PREFERRED_SIZE, 132, GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     );
                     cliBtt1Layout.setVerticalGroup(
                         cliBtt1Layout.createParallelGroup()
                             .addGroup(GroupLayout.Alignment.TRAILING, cliBtt1Layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(label4, GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+                                .addContainerGap())
+                    );
+                }
+
+                //---- label2 ----
+                label2.setText("Funcion\u00e1rio");
+                label2.setForeground(Color.white);
+
+                //======== listaClientesBtt ========
+                {
+                    listaClientesBtt.setBorder(null);
+                    listaClientesBtt.setBackground(new Color(0x21252f));
+                    listaClientesBtt.setForeground(Color.black);
+                    listaClientesBtt.addMouseListener(new MouseAdapter() {
+                        @Override
+                        public void mouseClicked(MouseEvent e) {
+                            listaClientesBttMouseClicked(e);
+                        }
+                        @Override
+                        public void mouseEntered(MouseEvent e) {
+                            listaClientesBttMouseEntered(e);
+                        }
+                        @Override
+                        public void mouseExited(MouseEvent e) {
+                            listaClientesBttMouseExited(e);
+                        }
+                        @Override
+                        public void mousePressed(MouseEvent e) {
+                            listaClientesBttMousePressed(e);
+                        }
+                        @Override
+                        public void mouseReleased(MouseEvent e) {
+                            listaClientesBttMouseReleased(e);
+                        }
+                    });
+
+                    //---- label58 ----
+                    label58.setText("Lista de clientes");
+                    label58.setForeground(Color.white);
+                    label58.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 18));
+
+                    GroupLayout listaClientesBttLayout = new GroupLayout(listaClientesBtt);
+                    listaClientesBtt.setLayout(listaClientesBttLayout);
+                    listaClientesBttLayout.setHorizontalGroup(
+                        listaClientesBttLayout.createParallelGroup()
+                            .addGroup(listaClientesBttLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(label58)
+                                .addContainerGap(123, Short.MAX_VALUE))
+                    );
+                    listaClientesBttLayout.setVerticalGroup(
+                        listaClientesBttLayout.createParallelGroup()
+                            .addGroup(listaClientesBttLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(label58, GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+                                .addContainerGap())
+                    );
+                }
+
+                //======== listaProdutosBtt ========
+                {
+                    listaProdutosBtt.setBorder(null);
+                    listaProdutosBtt.setBackground(new Color(0x21252f));
+                    listaProdutosBtt.setForeground(Color.black);
+                    listaProdutosBtt.addMouseListener(new MouseAdapter() {
+                        @Override
+                        public void mouseClicked(MouseEvent e) {
+                            listaProdutosBttMouseClicked(e);
+                        }
+                        @Override
+                        public void mouseEntered(MouseEvent e) {
+                            listaProdutosBttMouseEntered(e);
+                        }
+                        @Override
+                        public void mouseExited(MouseEvent e) {
+                            listaProdutosBttMouseExited(e);
+                        }
+                        @Override
+                        public void mousePressed(MouseEvent e) {
+                            listaProdutosBttMousePressed(e);
+                        }
+                        @Override
+                        public void mouseReleased(MouseEvent e) {
+                            listaProdutosBttMouseReleased(e);
+                        }
+                    });
+
+                    //---- label59 ----
+                    label59.setText("Lista de Produtos");
+                    label59.setForeground(Color.white);
+                    label59.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 18));
+
+                    GroupLayout listaProdutosBttLayout = new GroupLayout(listaProdutosBtt);
+                    listaProdutosBtt.setLayout(listaProdutosBttLayout);
+                    listaProdutosBttLayout.setHorizontalGroup(
+                        listaProdutosBttLayout.createParallelGroup()
+                            .addGroup(listaProdutosBttLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(label59)
+                                .addContainerGap(111, Short.MAX_VALUE))
+                    );
+                    listaProdutosBttLayout.setVerticalGroup(
+                        listaProdutosBttLayout.createParallelGroup()
+                            .addGroup(listaProdutosBttLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(label59, GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
                                 .addContainerGap())
                     );
                 }
@@ -702,22 +889,35 @@ public class dashboardFuncionario {
                                 .addComponent(efetuarVendaBtt, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(cliBtt1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(sidePanelLayout.createSequentialGroup()
-                                    .addComponent(infoPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                    .addGap(0, 73, Short.MAX_VALUE)))
+                                    .addComponent(infoPanel, 86, 86, GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(label2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(GroupLayout.Alignment.TRAILING, sidePanelLayout.createSequentialGroup()
+                                    .addGap(0, 0, Short.MAX_VALUE)
+                                    .addComponent(listaClientesBtt, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                .addGroup(sidePanelLayout.createSequentialGroup()
+                                    .addComponent(listaProdutosBtt, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                    .addGap(0, 0, Short.MAX_VALUE)))
                             .addContainerGap())
                 );
                 sidePanelLayout.setVerticalGroup(
                     sidePanelLayout.createParallelGroup()
                         .addGroup(sidePanelLayout.createSequentialGroup()
                             .addContainerGap()
-                            .addComponent(infoPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                            .addGroup(sidePanelLayout.createParallelGroup()
+                                .addComponent(infoPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(label2))
                             .addGap(39, 39, 39)
                             .addComponent(homeBtt, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(efetuarVendaBtt, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(cliBtt1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                            .addContainerGap(585, Short.MAX_VALUE))
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(listaClientesBtt, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(listaProdutosBtt, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                            .addContainerGap(473, Short.MAX_VALUE))
                 );
             }
 
@@ -735,7 +935,7 @@ public class dashboardFuncionario {
                     label14.setBackground(new Color(0x21252f));
 
                     //---- greetLbl ----
-                    greetLbl.setText("Bem vindo, ");
+                    greetLbl.setText("Bem vindo");
                     greetLbl.setForeground(Color.black);
                     greetLbl.setBackground(new Color(0x21252f));
                     greetLbl.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 26));
@@ -939,13 +1139,9 @@ public class dashboardFuncionario {
                     efetuarVendaPanelLayout.setHorizontalGroup(
                         efetuarVendaPanelLayout.createParallelGroup()
                             .addGroup(GroupLayout.Alignment.TRAILING, efetuarVendaPanelLayout.createSequentialGroup()
-                                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(panel7, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                 .addGap(6, 6, 6)
                                 .addGroup(efetuarVendaPanelLayout.createParallelGroup()
-                                    .addGroup(efetuarVendaPanelLayout.createSequentialGroup()
-                                        .addGap(20, 20, 20)
-                                        .addComponent(panel14, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                                     .addComponent(label60, GroupLayout.PREFERRED_SIZE, 380, GroupLayout.PREFERRED_SIZE)
                                     .addGroup(efetuarVendaPanelLayout.createSequentialGroup()
                                         .addComponent(label61)
@@ -973,19 +1169,19 @@ public class dashboardFuncionario {
                                         .addComponent(ClearBttVendas, GroupLayout.PREFERRED_SIZE, 188, GroupLayout.PREFERRED_SIZE))
                                     .addGroup(efetuarVendaPanelLayout.createSequentialGroup()
                                         .addGap(97, 97, 97)
-                                        .addComponent(SaveBttVendas, GroupLayout.PREFERRED_SIZE, 186, GroupLayout.PREFERRED_SIZE)))
-                                .addGap(300, 300, 300)
+                                        .addComponent(SaveBttVendas, GroupLayout.PREFERRED_SIZE, 186, GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(panel14, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 297, Short.MAX_VALUE)
                                 .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 430, GroupLayout.PREFERRED_SIZE))
                     );
                     efetuarVendaPanelLayout.setVerticalGroup(
                         efetuarVendaPanelLayout.createParallelGroup()
-                            .addGroup(GroupLayout.Alignment.TRAILING, efetuarVendaPanelLayout.createSequentialGroup()
-                                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(efetuarVendaPanelLayout.createSequentialGroup()
                                 .addGroup(efetuarVendaPanelLayout.createParallelGroup()
                                     .addComponent(panel7, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                     .addGroup(efetuarVendaPanelLayout.createSequentialGroup()
                                         .addComponent(panel14, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                        .addGap(6, 6, 6)
+                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(label60, GroupLayout.PREFERRED_SIZE, 84, GroupLayout.PREFERRED_SIZE)
                                         .addGap(6, 6, 6)
                                         .addGroup(efetuarVendaPanelLayout.createParallelGroup()
@@ -1024,8 +1220,10 @@ public class dashboardFuncionario {
                                             .addComponent(addBttVendas)
                                             .addComponent(ClearBttVendas))
                                         .addGap(6, 6, 6)
-                                        .addComponent(SaveBttVendas))
-                                    .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 900, GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(SaveBttVendas)))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(efetuarVendaPanelLayout.createSequentialGroup()
+                                .addComponent(scrollPane1)
                                 .addContainerGap())
                     );
                 }
@@ -1047,7 +1245,7 @@ public class dashboardFuncionario {
                         );
                         sidePanel2Layout.setVerticalGroup(
                             sidePanel2Layout.createParallelGroup()
-                                .addGap(0, 900, Short.MAX_VALUE)
+                                .addGap(0, 894, Short.MAX_VALUE)
                         );
                     }
 
@@ -1142,7 +1340,7 @@ public class dashboardFuncionario {
                     });
 
                     //---- label13 ----
-                    label13.setText("Cadastrar cliente");
+                    label13.setText("Cadastrar clientez");
                     label13.setFont(new Font("Yu Gothic Light", Font.PLAIN, 36));
                     label13.setForeground(Color.white);
                     label13.setBackground(new Color(0x21252f));
@@ -1168,8 +1366,9 @@ public class dashboardFuncionario {
                     cadClientePanelLayout.setHorizontalGroup(
                         cadClientePanelLayout.createParallelGroup()
                             .addGroup(cadClientePanelLayout.createSequentialGroup()
+                                .addContainerGap()
                                 .addComponent(sidePanel2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addGap(6, 6, 6)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(cadClientePanelLayout.createParallelGroup()
                                     .addComponent(panel10, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                     .addComponent(label13, GroupLayout.PREFERRED_SIZE, 380, GroupLayout.PREFERRED_SIZE)
@@ -1187,7 +1386,7 @@ public class dashboardFuncionario {
                                     .addComponent(separator5, GroupLayout.PREFERRED_SIZE, 380, GroupLayout.PREFERRED_SIZE)
                                     .addComponent(saveBtt, GroupLayout.PREFERRED_SIZE, 380, GroupLayout.PREFERRED_SIZE)
                                     .addComponent(clearBtt, GroupLayout.PREFERRED_SIZE, 380, GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 806, Short.MAX_VALUE))
+                                .addGap(0, 797, Short.MAX_VALUE))
                     );
                     cadClientePanelLayout.setVerticalGroup(
                         cadClientePanelLayout.createParallelGroup()
@@ -1226,10 +1425,110 @@ public class dashboardFuncionario {
                                         .addGap(18, 18, 18)
                                         .addComponent(saveBtt)
                                         .addGap(6, 6, 6)
-                                        .addComponent(clearBtt))))
+                                        .addComponent(clearBtt)))
+                                .addContainerGap())
                     );
                 }
                 centralPanel.add(cadClientePanel, "card3");
+
+                //======== listaClientesPanel ========
+                {
+                    listaClientesPanel.setBackground(new Color(0x21252f));
+
+                    //======== scrollPane2 ========
+                    {
+
+                        //---- FclientesTable ----
+                        FclientesTable.setModel(new DefaultTableModel(
+                            new Object[][] {
+                                {null, ""},
+                            },
+                            new String[] {
+                                "idCliente", "nomeCliente"
+                            }
+                        ) {
+                            boolean[] columnEditable = new boolean[] {
+                                true, false
+                            };
+                            @Override
+                            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                                return columnEditable[columnIndex];
+                            }
+                        });
+                        {
+                            TableColumnModel cm = FclientesTable.getColumnModel();
+                            cm.getColumn(1).setResizable(false);
+                        }
+                        scrollPane2.setViewportView(FclientesTable);
+                    }
+
+                    GroupLayout listaClientesPanelLayout = new GroupLayout(listaClientesPanel);
+                    listaClientesPanel.setLayout(listaClientesPanelLayout);
+                    listaClientesPanelLayout.setHorizontalGroup(
+                        listaClientesPanelLayout.createParallelGroup()
+                            .addGroup(listaClientesPanelLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(scrollPane2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(811, Short.MAX_VALUE))
+                    );
+                    listaClientesPanelLayout.setVerticalGroup(
+                        listaClientesPanelLayout.createParallelGroup()
+                            .addGroup(listaClientesPanelLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(scrollPane2, GroupLayout.DEFAULT_SIZE, 888, Short.MAX_VALUE)
+                                .addContainerGap())
+                    );
+                }
+                centralPanel.add(listaClientesPanel, "card4");
+
+                //======== listaProdutosPanel ========
+                {
+                    listaProdutosPanel.setBackground(new Color(0x21252f));
+
+                    //======== scrollPane3 ========
+                    {
+                        scrollPane3.setBackground(new Color(0x21252f));
+
+                        //---- FprodutosTable ----
+                        FprodutosTable.setModel(new DefaultTableModel(
+                            new Object[][] {
+                                {null, null},
+                            },
+                            new String[] {
+                                "idProduto", "nomeProduto"
+                            }
+                        ) {
+                            boolean[] columnEditable = new boolean[] {
+                                true, false
+                            };
+                            @Override
+                            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                                return columnEditable[columnIndex];
+                            }
+                        });
+                        {
+                            TableColumnModel cm = FprodutosTable.getColumnModel();
+                            cm.getColumn(1).setResizable(false);
+                        }
+                        scrollPane3.setViewportView(FprodutosTable);
+                    }
+
+                    GroupLayout listaProdutosPanelLayout = new GroupLayout(listaProdutosPanel);
+                    listaProdutosPanel.setLayout(listaProdutosPanelLayout);
+                    listaProdutosPanelLayout.setHorizontalGroup(
+                        listaProdutosPanelLayout.createParallelGroup()
+                            .addGroup(listaProdutosPanelLayout.createSequentialGroup()
+                                .addComponent(scrollPane3, GroupLayout.PREFERRED_SIZE, 452, GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 817, Short.MAX_VALUE))
+                    );
+                    listaProdutosPanelLayout.setVerticalGroup(
+                        listaProdutosPanelLayout.createParallelGroup()
+                            .addGroup(listaProdutosPanelLayout.createSequentialGroup()
+                                .addComponent(scrollPane3, GroupLayout.PREFERRED_SIZE, 888, GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 12, Short.MAX_VALUE))
+                    );
+                }
+                centralPanel.add(listaProdutosPanel, "card5");
             }
 
             GroupLayout mainPanelFLayout = new GroupLayout(mainPanelF);
@@ -1239,7 +1538,7 @@ public class dashboardFuncionario {
                     .addGroup(mainPanelFLayout.createSequentialGroup()
                         .addComponent(sidePanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(centralPanel, GroupLayout.DEFAULT_SIZE, 1272, Short.MAX_VALUE)
+                        .addComponent(centralPanel, GroupLayout.DEFAULT_SIZE, 1269, Short.MAX_VALUE)
                         .addContainerGap())
             );
             mainPanelFLayout.setVerticalGroup(
@@ -1247,9 +1546,7 @@ public class dashboardFuncionario {
                     .addGroup(mainPanelFLayout.createSequentialGroup()
                         .addGroup(mainPanelFLayout.createParallelGroup()
                             .addComponent(sidePanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                            .addGroup(mainPanelFLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(centralPanel, GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)))
+                            .addComponent(centralPanel, GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE))
                         .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             );
         }
@@ -1260,7 +1557,6 @@ public class dashboardFuncionario {
     public JPanel mainPanelF;
     private JPanel sidePanel;
     private JPanel infoPanel;
-    private JLabel nomeGerenteLbl;
     private JPanel manIconPanel;
     private JLabel managerIcon;
     private JPanel homeBtt;
@@ -1269,6 +1565,11 @@ public class dashboardFuncionario {
     private JLabel label57;
     private JPanel cliBtt1;
     private JLabel label4;
+    private JLabel label2;
+    private JPanel listaClientesBtt;
+    private JLabel label58;
+    private JPanel listaProdutosBtt;
+    private JLabel label59;
     private JPanel centralPanel;
     private JPanel homePanelF;
     private JLabel label14;
@@ -1316,6 +1617,12 @@ public class dashboardFuncionario {
     private JButton clearBtt;
     private JLabel label13;
     private JPanel panel10;
+    private JPanel listaClientesPanel;
+    private JScrollPane scrollPane2;
+    private JTable FclientesTable;
+    private JPanel listaProdutosPanel;
+    private JScrollPane scrollPane3;
+    private JTable FprodutosTable;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
     public static void main(String[] args) {
         ImageIcon imageIcon = new ImageIcon("src/icons/icon.png");
